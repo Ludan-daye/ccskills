@@ -41,10 +41,10 @@
 
 面向 **CS 顶会/顶刊** 的论文**结构 skill**（不写科学正文，只搭 LaTeX 骨架）：
 
-1. **先问清**：会议还是期刊、具体 venue（及年份/track/阶段）
-2. **官网下载**官方 author kit / LaTeX 模板，落到 `paper/vendor/`
-3. **对照模板确认**章节架构（默认 Abstract → Intro → Related Work → Method → Experiments → Limitations → Conclusion）
-4. **用 LaTeX 填充** `main.tex` + `sections/*.tex` 骨架（`% Theme` / `% TODO`），可选 `STRUCTURE.md` 对照表
+1. **先问清**：会议还是期刊、具体 venue；**本地编译还是 Overleaf**；若 Overleaf 是否有 **Git key/远程**（可直接 push 改稿）
+2. **所有问答写入** `paper/GUIDANCE.md`（指导记录，禁止写入 token/密钥）
+3. **官网下载**官方 author kit / LaTeX 模板，落到 `paper/vendor/`
+4. **对照模板确认**章节架构，再 **用 LaTeX 填充**骨架；按 GUIDANCE 本地编译或 push Overleaf
 
 **示例：**
 
