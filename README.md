@@ -11,6 +11,7 @@
 | [`paper-structure`](skills/paper/structure/) | 论文 | 自动 | **paper 子 skill**：搭 LaTeX 骨架（venue/模板/GUIDANCE），不写正文 |
 | [`paper-section`](skills/paper/section/) | 论文 | 自动 | **paper 子 skill**：菜单勾选 → 确认后写正文某节（intro/method/…），数字/术语溯源 |
 | [`paper-abstract`](skills/paper/abstract/) | 论文 | 自动 | **paper 子 skill**：菜单勾选 → 确认后写 Abstract（不负责全库扫描） |
+| [`paper-refs`](skills/paper/refs/) | 论文 | 自动 | **paper 子 skill**：按方向多 agent 搜集 → 逐条核实 → 池 → 用户勾选引用 |
 | [`scheduled-patrol`](skills/scheduled-patrol/) | 运维 | 自动 | 定时深巡检后台任务并结构化汇报 |
 | [`karpathy-guidelines`](skills/karpathy-guidelines/) | 编码 | 自动 | 少假设、最小实现、只改该改的、先定义成功标准 |
 | [`frontend-design`](skills/frontend-design/) | 前端 | 自动 | 有辨识度的 UI，避免模板化 AI 审美 |
@@ -18,7 +19,7 @@
 | [`grill-me`](skills/grill-me/) | 规划 | **仅手动** `/grill-me` | 入口，转去 `grilling` |
 | [`handoff`](skills/handoff/) | 协作 | **仅手动** `/handoff` | 将会话压成交接文档给新 agent |
 
-共 **11** 个 skill（`grill-me` + `grilling` 成对使用）。
+共 **12** 个 skill（`grill-me` + `grilling` 成对使用）。
 
 ---
 
@@ -42,7 +43,7 @@
 
 ### 2. 论文写作
 
-**约定：所有论文写作 skill 只放在 `skills/paper/` 下**，不再在 `skills/` 顶层新增 paper 相关 skill。四个 skill 共用一份 `PAPER_REPO_SURVEY.md`/`TERMS.md`，构成 `paper`（父）→ `paper-structure` / `paper-section` / `paper-abstract`（子）的一棵树。
+**约定：所有论文写作 skill 只放在 `skills/paper/` 下**，不再在 `skills/` 顶层新增 paper 相关 skill。五个 skill 共用一份 `PAPER_REPO_SURVEY.md`/`TERMS.md`，构成 `paper`（父）→ `paper-structure` / `paper-section` / `paper-abstract` / `paper-refs`（子）的一棵树。
 
 #### paper（论文父 skill）
 

@@ -19,6 +19,7 @@ Vendored skills below are copied for convenience. Upstream remains authoritative
 | `paper` | Ludan-daye / ccskills |
 | `paper-section` | Ludan-daye / ccskills (child of paper) |
 | `paper-abstract` | Ludan-daye / ccskills (child of paper) |
+| `paper-refs` | Ludan-daye / ccskills (child of paper) |
 | `scheduled-patrol` | Ludan-daye / ccskills |
 
 `paper-structure` section themes draw on standard scientific IMRaD practice and CS paper guidance (e.g. Penn State technical writing guides, MIT EECS Communication Lab Methods guidance); not affiliated with those institutions.
