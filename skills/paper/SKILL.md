@@ -24,6 +24,7 @@ paper/                          ← this skill (scan + routing + shared docs)
 ├── abstract/                   ← paper-abstract
 │   ├── SKILL.md
 │   └── references/…
+├── refs/                      ← paper-refs (related-work collection)
 ├── section/                   ← paper-section (body sections)
 │   └── SKILL.md
 └── structure/                  ← paper-structure (ex cs-paper-structure)
@@ -35,6 +36,7 @@ paper/                          ← this skill (scan + routing + shared docs)
 | Child (invoke after survey when needed) | Role |
 |-----------------------------------------|------|
 | **`paper-abstract`** (`paper/abstract/`) | Content menu → user lock → style/format Abstract |
+| **`paper-refs`** (`paper/refs/`) | Seed from direction → search → verify → pool → user-gated shortlist |
 | **`paper-section`** (`paper/section/`) | Body section: menu → lock → write prose into LaTeX |
 | **`paper-structure`** (`paper/structure/`) | IEEE/venue LaTeX skeleton + GUIDANCE + architecture |
 | future `paper-polish` (SP3) | Submission-oriented revise pass |
@@ -99,6 +101,7 @@ Also acceptable legacy name: `ABSTRACT_REPO_SURVEY.md` — if only that exists, 
 | 写摘要 / abstract | Invoke **`paper-abstract`** (do **not** re-scan unless stale) |
 | 写正文/某节 (intro/method/…) | Invoke **`paper-section`** |
 | 搭结构 / 模板 / IEEE | Invoke **`paper-structure`** |
+| 找相关工作 / 引文 / related work 检索 | Invoke **`paper-refs`** |
 | 重新扫 / 结果更新了 | Re-run Phase S |
 | unclear | Ask: abstract / structure / other section |
 
