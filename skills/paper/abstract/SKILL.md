@@ -107,7 +107,7 @@ Map lock → 6 moves → prose (150–220 words default) → LaTeX.
 
 - Exemplars: `references/examples.md` (structure only)  
 - Style: `references/structure-and-style.md`  
-- Template: IEEE `abstract` / `IEEEkeywords` if no other kit (`cs-paper-structure`)  
+- Template: IEEE `abstract` / `IEEEkeywords` if no other kit (`paper-structure`)  
 
 Outputs: English abstract; optional Chinese; update `paper/abstract.md` / `main.tex` only after lock and if writing is allowed.
 

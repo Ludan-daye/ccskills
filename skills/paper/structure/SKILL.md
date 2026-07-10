@@ -1,11 +1,11 @@
 ---
-name: cs-paper-structure
+name: paper-structure
 description: >
-  Scaffold a CS research paper in official venue LaTeX: ask journal vs conference and
-  exact venue, local vs Overleaf compile (and Overleaf Git access if any), log all Q&A
-  into a guidance file, download the official template, confirm architecture, then fill
-  LaTeX skeletons. Use when starting a 顶会/顶刊 paper, "论文结构", "下载模板",
-  "LaTeX 模板", "Overleaf", "先定架构", or preparing camera-ready layout before drafting.
+  Child of the paper skill: scaffold CS research paper LaTeX (default IEEE IEEEtran).
+  Ask journal vs conference and venue, local vs Overleaf (+ Git), log GUIDANCE.md,
+  download official template, confirm architecture, fill skeletons. Use when 论文结构,
+  cs-paper-structure, 下载模板, LaTeX 模板, Overleaf, 先定架构, IEEE template.
+  Repo survey is owned by parent paper skill (PAPER_REPO_SURVEY.md)—do not full-scan here.
 ---
 
 # CS Paper Structure (Official LaTeX Scaffold)
@@ -560,7 +560,7 @@ In Chinese (unless user writes English):
 |-------|------|
 | `managing-research-projects` | Repo TODO, experiments, data layout |
 | **`paper`** (parent) | Subagent repo scan → `paper/PAPER_REPO_SURVEY.md` (paths); routes to section skills |
-| **`cs-paper-structure` (this)** | Intake + `GUIDANCE.md` → official LaTeX kit → architecture → skeleton `.tex` (+ Overleaf sync if configured) |
+| **`paper-structure` (this)** | Intake + `GUIDANCE.md` → official LaTeX kit → architecture → skeleton `.tex` (+ Overleaf sync if configured) |
 | `paper-abstract` | Child of `paper`: menu → lock → Abstract (reads survey; does not own scan) |
 | future section skills under `paper/` | Intro/Method/… |
 | future `paper-polish` | Read `GUIDANCE.md` / survey, submission-oriented revise |

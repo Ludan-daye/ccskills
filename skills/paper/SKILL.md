@@ -20,16 +20,20 @@ paper/                          ← this skill (scan + routing + shared docs)
 ├── references/
 │   ├── subagent-survey-prompt.md
 │   └── survey-template.md
-└── abstract/                   ← child: paper-abstract
-    ├── SKILL.md
-    └── references/…
+├── abstract/                   ← paper-abstract
+│   ├── SKILL.md
+│   └── references/…
+└── structure/                  ← paper-structure (ex cs-paper-structure)
+    └── SKILL.md
 ```
+
+**All paper-writing skills live under `skills/paper/`.** Do not add new paper section skills at the repo top level.
 
 | Child (invoke after survey when needed) | Role |
 |-----------------------------------------|------|
 | **`paper-abstract`** (`paper/abstract/`) | Content menu → user lock → style/format Abstract |
-| `cs-paper-structure` (sibling for now) | IEEE/venue LaTeX skeleton + GUIDANCE |
-| future `paper-intro` / `paper-method` / … | Section skills under `paper/` |
+| **`paper-structure`** (`paper/structure/`) | IEEE/venue LaTeX skeleton + GUIDANCE + architecture |
+| future `paper/intro`, `paper/method`, … | More section children under `paper/` only |
 
 **Rule:** Repo **scanning lives only here**, not in section children. Children **read** `paper/PAPER_REPO_SURVEY.md`.
 
@@ -87,7 +91,7 @@ Also acceptable legacy name: `ABSTRACT_REPO_SURVEY.md` — if only that exists, 
 | User intent | Next |
 |-------------|------|
 | 写摘要 / abstract | Invoke **`paper-abstract`** (do **not** re-scan unless stale) |
-| 搭结构 / 模板 / IEEE | Invoke **`cs-paper-structure`** |
+| 搭结构 / 模板 / IEEE | Invoke **`paper-structure`** |
 | 重新扫 / 结果更新了 | Re-run Phase S |
 | unclear | Ask: abstract / structure / other section |
 
@@ -139,4 +143,4 @@ Still scan read-only; put survey body in chat under `PAPER_REPO_SURVEY` or a use
 
 - `references/subagent-survey-prompt.md`  
 - `references/survey-template.md`  
-- Child: `abstract/SKILL.md` (`paper-abstract`)  
+- Children: `abstract/SKILL.md`, `structure/SKILL.md`  

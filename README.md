@@ -7,7 +7,6 @@
 | Skill | 分类 | 触发 | 说明 |
 |-------|------|------|------|
 | [`managing-research-projects`](skills/managing-research-projects/) | 科研 | 自动 | TODO 驱动的科研 / 论文项目管理 |
-| [`cs-paper-structure`](skills/cs-paper-structure/) | 论文 | 自动 | 先问会议/期刊与具体 venue → 官网下官方 LaTeX 模板 → 确认架构并填充骨架 |
 | [`paper`](skills/paper/) | 论文 | 自动 | **论文父 skill**：subagent 扫仓库 → `PAPER_REPO_SURVEY.md`（带路径），再路由到各节 |
 | [`paper-abstract`](skills/paper/abstract/) | 论文 | 自动 | **paper 子 skill**：菜单勾选 → 确认后写 Abstract（不负责全库扫描） |
 | [`scheduled-patrol`](skills/scheduled-patrol/) | 运维 | 自动 | 定时深巡检后台任务并结构化汇报 |
@@ -39,7 +38,7 @@
 - 「跑完 baseline 后更新 TODO.md」
 - 「初始化论文项目结构」
 
-#### cs-paper-structure
+#### paper-structure（原 cs-paper-structure）
 
 面向 **CS 顶会/顶刊** 的论文**结构 skill**（不写科学正文，只搭 LaTeX 骨架）：
 
@@ -55,6 +54,10 @@
 - 「先定论文架构」
 
 后续计划：`paper-draft`（在 LaTeX 里写各节正文）→ `paper-polish`（投稿前打磨）。
+
+#### paper（所有论文 skill 的根）
+
+**约定：所有论文写作 skill 只放在 `skills/paper/` 下**，不再在 `skills/` 顶层新增 paper 相关 skill。
 
 #### paper / paper-abstract
 
@@ -169,8 +172,7 @@ ccskills/
 ├── install.sh
 └── skills/
     ├── managing-research-projects/   # 自研
-    ├── cs-paper-structure/           # 自研（论文结构 + LaTeX 骨架）
-    ├── paper/                       # 自研（论文父 skill + abstract 子 skill）
+        ├── paper/                       # 自研（论文父 skill + abstract 子 skill）
     ├── scheduled-patrol/             # 自研
     ├── karpathy-guidelines/          # 第三方
     ├── frontend-design/              # 第三方
@@ -188,7 +190,7 @@ ccskills/
 | 场景 | 建议 skill |
 |------|------------|
 | 论文 / 实验仓库 | `managing-research-projects` |
-| 顶会论文先定章节架构 | `cs-paper-structure` |
+| 顶会论文先定章节架构 | `paper-structure` |
 | 论文写作总入口 / 扫仓库 | `paper` |
 | 写/改 Abstract | `paper-abstract`（依赖 `paper` 的 survey） |
 | 多个后台任务跑很久 | `scheduled-patrol` |
@@ -203,5 +205,5 @@ ccskills/
 
 ## 许可
 
-- **自研 skill**（`managing-research-projects`、`cs-paper-structure`、`paper`、`paper-abstract`、`scheduled-patrol`）：与本仓库相同，可自由使用与修改。
+- **自研 skill**（`managing-research-projects`、`paper-structure`、`paper`、`paper-abstract`、`scheduled-patrol`）：与本仓库相同，可自由使用与修改。
 - **第三方 skill**：保留原作者许可与归属，详见 [SOURCES.md](SOURCES.md)。再分发时请遵守各自 LICENSE。
