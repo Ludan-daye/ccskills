@@ -4,7 +4,7 @@ Two baseline runs drafting the **Method** section of the FastKV/SlabQuant fixtur
 
 ## RED v1 — fixture in-repo (contaminated, discarded)
 Given the fixture at `skills/paper/section/references/fixture/`, the no-skill agent discovered the skill's own convention docs (`references/sections/method.md`, `storage-framework.md`, the spec) and followed them unprompted → output already disciplined (no result numbers in Method, respected `needs-user` baseline, used `% src:`/`% CITE-NEEDED`/`% FIG-NEEDED`). RED ≈ GREEN → invalid.
-**Lesson:** co-locating the fixture with the conventions contaminates the baseline; run RED against an isolated copy. (Also argues the shipped fixture should not sit inside the skill's `references/` — see final review.)
+**Lesson:** co-locating the fixture with the conventions contaminates the baseline; run RED against an isolated copy. (Also argues the shipped fixture should not sit inside the skill's `references/` — see final review. Resolved: fixture relocated to `test/fixtures/paper-section/`, outside any shipped skill tree.)
 
 ## RED v2 — isolated /tmp copy (valid)
 Fixture copied to `/tmp/paper-red-fixture`, no access to skill docs. Failures surfaced:
