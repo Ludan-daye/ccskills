@@ -8,6 +8,7 @@ SKILLS_SRC="$ROOT/skills"
 ALL_SKILLS=(
   managing-research-projects
   cs-paper-structure
+  paper-abstract
   scheduled-patrol
   karpathy-guidelines
   frontend-design
