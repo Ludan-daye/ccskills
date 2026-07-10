@@ -8,6 +8,8 @@
 |-------|------|------|------|
 | [`managing-research-projects`](skills/managing-research-projects/) | 科研 | 自动 | TODO 驱动的科研 / 论文项目管理 |
 | [`paper`](skills/paper/) | 论文 | 自动 | **论文父 skill**：subagent 扫仓库 → `PAPER_REPO_SURVEY.md`（带路径），再路由到各节 |
+| [`paper-structure`](skills/paper/structure/) | 论文 | 自动 | **paper 子 skill**：搭 LaTeX 骨架（venue/模板/GUIDANCE），不写正文 |
+| [`paper-section`](skills/paper/section/) | 论文 | 自动 | **paper 子 skill**：菜单勾选 → 确认后写正文某节（intro/method/…），数字/术语溯源 |
 | [`paper-abstract`](skills/paper/abstract/) | 论文 | 自动 | **paper 子 skill**：菜单勾选 → 确认后写 Abstract（不负责全库扫描） |
 | [`scheduled-patrol`](skills/scheduled-patrol/) | 运维 | 自动 | 定时深巡检后台任务并结构化汇报 |
 | [`karpathy-guidelines`](skills/karpathy-guidelines/) | 编码 | 自动 | 少假设、最小实现、只改该改的、先定义成功标准 |
@@ -16,7 +18,7 @@
 | [`grill-me`](skills/grill-me/) | 规划 | **仅手动** `/grill-me` | 入口，转去 `grilling` |
 | [`handoff`](skills/handoff/) | 协作 | **仅手动** `/handoff` | 将会话压成交接文档给新 agent |
 
-共 **10** 个 skill（`grill-me` + `grilling` 成对使用）。
+共 **11** 个 skill（`grill-me` + `grilling` 成对使用）。
 
 ---
 
@@ -38,7 +40,15 @@
 - 「跑完 baseline 后更新 TODO.md」
 - 「初始化论文项目结构」
 
-#### paper-structure（原 cs-paper-structure）
+### 2. 论文写作
+
+**约定：所有论文写作 skill 只放在 `skills/paper/` 下**，不再在 `skills/` 顶层新增 paper 相关 skill。四个 skill 共用一份 `PAPER_REPO_SURVEY.md`/`TERMS.md`，构成 `paper`（父）→ `paper-structure` / `paper-section` / `paper-abstract`（子）的一棵树。
+
+#### paper（论文父 skill）
+
+加载时派 subagent 扫描用户研究仓库，写出 `paper/PAPER_REPO_SURVEY.md`（方向/数据/结果/术语，**均带路径**），并据此在 `paper/TERMS.md`、`paper/STATE.md` 里做种子；再按用户意图路由到 `paper-structure` / `paper-section` / `paper-abstract`。
+
+#### paper-structure
 
 面向 **CS 顶会/顶刊** 的论文**结构 skill**（不写科学正文，只搭 LaTeX 骨架）：
 
@@ -53,19 +63,23 @@
 - 「这是期刊 TPAMI，下载模板并填章节」
 - 「先定论文架构」
 
-后续计划：`paper-draft`（在 LaTeX 里写各节正文）→ `paper-polish`（投稿前打磨）。
+#### paper-section
 
-#### paper（所有论文 skill 的根）
+挂在 `paper` 下，起草**正文某一节**（intro / related work / method / experiments / limitations / conclusion）：先读 survey + `TERMS.md`，给出内容菜单（每条带来源路径）→ 你确认 `CONTENT_LOCK` → 才写入对应 `sections/*.tex`。数字必须溯源到 survey，术语照 `TERMS.md`；缺来源就标 `NUM-NEEDED` 或 `needs-user` 问你，不编造。
 
-**约定：所有论文写作 skill 只放在 `skills/paper/` 下**，不再在 `skills/` 顶层新增 paper 相关 skill。
+**示例：**
 
-#### paper / paper-abstract
+- 「根据仓库写 Method 正文」
+- 「把 Experiments 那节写了」
+- 「补一下 Limitations」
 
-- **`paper`**：加载时派 subagent 扫描用户研究仓库，写出 `paper/PAPER_REPO_SURVEY.md`（方向/数据/结果，**均带路径**），再路由到各节 skill。
-- **`paper-abstract`**：挂在 `paper` 下；**不扫全库**，只读 survey → 内容菜单 → 你确认 → 再按顶会风格写 Abstract。
+#### paper-abstract
 
+挂在 `paper` 下；**不扫全库**，只读 survey → 内容菜单 → 你确认 → 再按顶会风格写 Abstract。同样遵守 `TERMS.md` 与占位约定，不编造术语/数字。
 
-### 2. 长任务巡检
+后续计划：`paper-polish`（投稿前打磨）。
+
+### 3. 长任务巡检
 
 #### scheduled-patrol
 
@@ -83,7 +97,7 @@
 
 > Claude Code 原文使用 `CronCreate` / `TaskList` 等；在 Grok 中可映射为 `scheduler_create`、后台任务与 `monitor`。
 
-### 3. 编码行为
+### 4. 编码行为
 
 #### karpathy-guidelines
 
@@ -96,7 +110,7 @@
 
 **来源：** [forrestchang/andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills)（MIT）
 
-### 4. 前端设计
+### 5. 前端设计
 
 #### frontend-design
 
@@ -104,7 +118,7 @@
 
 **来源：** [anthropics/skills](https://github.com/anthropics/skills)（Apache-2.0，见目录内 `LICENSE.txt`）
 
-### 5. 规划与交接
+### 6. 规划与交接
 
 #### grilling / grill-me
 
@@ -172,7 +186,12 @@ ccskills/
 ├── install.sh
 └── skills/
     ├── managing-research-projects/   # 自研
-        ├── paper/                       # 自研（论文父 skill + abstract 子 skill）
+    ├── paper/                        # 自研（论文父 skill + 子 skill 树）
+    │   ├── SKILL.md
+    │   ├── references/
+    │   ├── section/
+    │   ├── structure/
+    │   └── abstract/
     ├── scheduled-patrol/             # 自研
     ├── karpathy-guidelines/          # 第三方
     ├── frontend-design/              # 第三方
@@ -190,8 +209,9 @@ ccskills/
 | 场景 | 建议 skill |
 |------|------------|
 | 论文 / 实验仓库 | `managing-research-projects` |
-| 顶会论文先定章节架构 | `paper-structure` |
 | 论文写作总入口 / 扫仓库 | `paper` |
+| 顶会论文先定章节架构 | `paper-structure` |
+| 写正文某一节（intro/method/…） | `paper-section`（依赖 `paper` 的 survey） |
 | 写/改 Abstract | `paper-abstract`（依赖 `paper` 的 survey） |
 | 多个后台任务跑很久 | `scheduled-patrol` |
 | 日常写代码 | `karpathy-guidelines` |
@@ -205,5 +225,5 @@ ccskills/
 
 ## 许可
 
-- **自研 skill**（`managing-research-projects`、`paper-structure`、`paper`、`paper-abstract`、`scheduled-patrol`）：与本仓库相同，可自由使用与修改。
+- **自研 skill**（`managing-research-projects`、`paper`、`paper-structure`、`paper-section`、`paper-abstract`、`scheduled-patrol`）：与本仓库相同，可自由使用与修改。
 - **第三方 skill**：保留原作者许可与归属，详见 [SOURCES.md](SOURCES.md)。再分发时请遵守各自 LICENSE。
