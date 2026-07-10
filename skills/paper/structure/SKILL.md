@@ -8,6 +8,11 @@ description: >
   Repo survey is owned by parent paper skill (PAPER_REPO_SURVEY.md)—do not full-scan here.
 ---
 
+# Paper Structure (child of `paper`)
+
+**Parent:** `paper` — owns subagent scan → `paper/PAPER_REPO_SURVEY.md`.  
+**This skill:** IEEE/venue LaTeX + GUIDANCE + architecture + skeletons only (no full-repo scan).
+
 # CS Paper Structure (Official LaTeX Scaffold)
 
 For **computer science conference / journal papers**. This skill does **not** write full scientific prose or invent results. It:

@@ -114,7 +114,7 @@ Still scan read-only; put survey body in chat under `PAPER_REPO_SURVEY` or a use
 | Path | Owner | Consumers |
 |------|--------|-----------|
 | `paper/PAPER_REPO_SURVEY.md` | **paper** (this) | abstract, intro, method, … |
-| `paper/GUIDANCE.md` | cs-paper-structure / paper | all |
+| `paper/GUIDANCE.md` | paper-structure / paper | all |
 | `paper/ABSTRACT_MENU.md` | paper-abstract | abstract only |
 | `paper/abstract.md`, `main.tex` | paper-abstract after lock | — |
 
@@ -125,7 +125,7 @@ Still scan read-only; put survey body in chat under `PAPER_REPO_SURVEY` or a use
 1. **Scan is parent-only.** Children must not spawn a second full-repo survey unless parent survey is missing (then call back into this skill / Phase S).  
 2. **No invented metrics.**  
 3. **No unsolicited git push** to user remotes.  
-4. Default LaTeX kit when unspecified: **IEEE IEEEtran** (see `cs-paper-structure`).  
+4. Default LaTeX kit when unspecified: **IEEE IEEEtran** (see `paper-structure`).  
 5. Chinese discussion default.
 
 ---
