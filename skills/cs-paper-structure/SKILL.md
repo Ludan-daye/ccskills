@@ -559,6 +559,8 @@ In Chinese (unless user writes English):
 | Skill | Role |
 |-------|------|
 | `managing-research-projects` | Repo TODO, experiments, data layout |
+| **`paper`** (parent) | Subagent repo scan → `paper/PAPER_REPO_SURVEY.md` (paths); routes to section skills |
 | **`cs-paper-structure` (this)** | Intake + `GUIDANCE.md` → official LaTeX kit → architecture → skeleton `.tex` (+ Overleaf sync if configured) |
-| future `paper-draft` | Read `GUIDANCE.md`, fill section prose **inside** this LaTeX project |
-| future `paper-polish` | Read `GUIDANCE.md`, submission-oriented revise |
+| `paper-abstract` | Child of `paper`: menu → lock → Abstract (reads survey; does not own scan) |
+| future section skills under `paper/` | Intro/Method/… |
+| future `paper-polish` | Read `GUIDANCE.md` / survey, submission-oriented revise |
