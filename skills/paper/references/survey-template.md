@@ -20,6 +20,11 @@ Subagent fills this file at `ROOT/paper/PAPER_REPO_SURVEY.md`.
 - paper_type: method | system | theory | empirical | efficiency | diagnosis | mixed
 Sources: (paths)
 
+## 1t. Terminology (canonical + paths)
+| term_id | canonical | expansion | source_path | status |
+|---------|-----------|-----------|-------------|--------|
+| T1 | | | | from-repo / needs-user |
+
 ## 2. Story / narrative
 - status_quo:
 - failure_mode_or_gap:
