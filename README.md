@@ -192,7 +192,8 @@ ccskills/
     │   ├── references/
     │   ├── section/
     │   ├── structure/
-    │   └── abstract/
+    │   ├── abstract/
+    │   └── refs/
     ├── scheduled-patrol/             # 自研
     ├── karpathy-guidelines/          # 第三方
     ├── frontend-design/              # 第三方
@@ -226,5 +227,5 @@ ccskills/
 
 ## 许可
 
-- **自研 skill**（`managing-research-projects`、`paper`、`paper-structure`、`paper-section`、`paper-abstract`、`scheduled-patrol`）：与本仓库相同，可自由使用与修改。
+- **自研 skill**（`managing-research-projects`、`paper`、`paper-structure`、`paper-section`、`paper-abstract`、`paper-refs`、`scheduled-patrol`）：与本仓库相同，可自由使用与修改。
 - **第三方 skill**：保留原作者许可与归属，详见 [SOURCES.md](SOURCES.md)。再分发时请遵守各自 LICENSE。
