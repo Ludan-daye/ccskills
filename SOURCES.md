@@ -15,7 +15,10 @@ Vendored skills below are copied for convenience. Upstream remains authoritative
 | Skill | Author |
 |-------|--------|
 | `managing-research-projects` | Ludan-daye / ccskills |
+| `cs-paper-structure` | Ludan-daye / ccskills |
 | `scheduled-patrol` | Ludan-daye / ccskills |
+
+`cs-paper-structure` section themes draw on standard scientific IMRaD practice and CS paper guidance (e.g. Penn State technical writing guides, MIT EECS Communication Lab Methods guidance); not affiliated with those institutions.
 
 ## How these landed here
 

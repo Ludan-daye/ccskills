@@ -1,12 +1,13 @@
 # ccskills
 
-面向 Claude Code / Grok / Cursor 的 Agent Skills 合集：科研管理、长任务巡检、编码行为约束、UI 设计、计划拷问与会话交接。
+面向 Claude Code / Grok / Cursor 的 Agent Skills 合集：科研管理、论文结构、长任务巡检、编码行为约束、UI 设计、计划拷问与会话交接。
 
 ## 一览
 
 | Skill | 分类 | 触发 | 说明 |
 |-------|------|------|------|
 | [`managing-research-projects`](skills/managing-research-projects/) | 科研 | 自动 | TODO 驱动的科研 / 论文项目管理 |
+| [`cs-paper-structure`](skills/cs-paper-structure/) | 论文 | 自动 | 先确认架构，再写 `paper/STRUCTURE.md`（各节主题地图） |
 | [`scheduled-patrol`](skills/scheduled-patrol/) | 运维 | 自动 | 定时深巡检后台任务并结构化汇报 |
 | [`karpathy-guidelines`](skills/karpathy-guidelines/) | 编码 | 自动 | 少假设、最小实现、只改该改的、先定义成功标准 |
 | [`frontend-design`](skills/frontend-design/) | 前端 | 自动 | 有辨识度的 UI，避免模板化 AI 审美 |
@@ -14,7 +15,7 @@
 | [`grill-me`](skills/grill-me/) | 规划 | **仅手动** `/grill-me` | 入口，转去 `grilling` |
 | [`handoff`](skills/handoff/) | 协作 | **仅手动** `/handoff` | 将会话压成交接文档给新 agent |
 
-共 **7** 个 skill（`grill-me` + `grilling` 成对使用）。
+共 **8** 个 skill（`grill-me` + `grilling` 成对使用）。
 
 ---
 
@@ -35,6 +36,21 @@
 - 「用 TODO List 方式管理这个科研项目」
 - 「跑完 baseline 后更新 TODO.md」
 - 「初始化论文项目结构」
+
+#### cs-paper-structure
+
+面向 **CS 顶会/顶刊** 的论文**结构 skill**（不写正文）：
+
+1. 与用户确认架构（默认 Abstract → Intro → Related Work → Method → Experiments → Limitations → Conclusion）
+2. 按各节主题写 `paper/STRUCTURE.md`（主题、必写/勿写、完成标准、推荐写作顺序）
+
+**示例：**
+
+- 「先定论文架构」
+- 「写一个结构 README」
+- 「初始化 paper/STRUCTURE.md」
+
+后续计划：`paper-draft`（按结构写各节）→ `paper-polish`（投稿前打磨）。
 
 ### 2. 长任务巡检
 
@@ -143,6 +159,7 @@ ccskills/
 ├── install.sh
 └── skills/
     ├── managing-research-projects/   # 自研
+    ├── cs-paper-structure/           # 自研（论文结构 README）
     ├── scheduled-patrol/             # 自研
     ├── karpathy-guidelines/          # 第三方
     ├── frontend-design/              # 第三方
@@ -160,6 +177,7 @@ ccskills/
 | 场景 | 建议 skill |
 |------|------------|
 | 论文 / 实验仓库 | `managing-research-projects` |
+| 顶会论文先定章节架构 | `cs-paper-structure` |
 | 多个后台任务跑很久 | `scheduled-patrol` |
 | 日常写代码 | `karpathy-guidelines` |
 | 做落地页 / 组件 UI | `frontend-design` |
@@ -172,5 +190,5 @@ ccskills/
 
 ## 许可
 
-- **自研 skill**（`managing-research-projects`、`scheduled-patrol`）：与本仓库相同，可自由使用与修改。
+- **自研 skill**（`managing-research-projects`、`cs-paper-structure`、`scheduled-patrol`）：与本仓库相同，可自由使用与修改。
 - **第三方 skill**：保留原作者许可与归属，详见 [SOURCES.md](SOURCES.md)。再分发时请遵守各自 LICENSE。
