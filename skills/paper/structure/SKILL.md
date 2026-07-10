@@ -71,37 +71,7 @@ Log in GUIDANCE:
 
 ### Q2b — Submission links（投稿入口）
 
-在知道具体 venue 后，**必须**把「投稿相关链接」写进 `GUIDANCE.md`（用户可提供；未提供则 agent 上网查官方页并填入，标注来源与查证日期）。
-
-若 **IEEE-default（未指定 venue）**，至少写入：
-
-| 类型 | 默认 URL（查证后可更新） |
-|------|--------------------------|
-| IEEE 会议模板页 | https://www.ieee.org/conferences/publishing/templates |
-| IEEE 期刊 / Author Center 模板 | https://template-selector.ieee.org/ 与 IEEE Author Center article templates |
-| CTAN IEEEtran（备用） | https://ctan.org/pkg/ieeetran |
-
-尽量收集并记录（能找到多少写多少，找不到写 `TBD` + 已尝试的检索词）：
-
-| 链接类型 | 说明 | 常见例子 |
-|----------|------|----------|
-| **投稿系统 / Submit** | 实际上传稿件的入口 | OpenReview、HotCRP、CMT、Softconf、IEEE Author Portal、ScholarOne、Editorial Manager |
-| **会议/期刊主页** | 当届或期刊官方站 | `https://neurips.cc/Conferences/2026/`、期刊 homepage |
-| **CFP / Author guidelines** | 截稿、格式、政策 | Call for Papers、Author Instructions |
-| **官方 LaTeX / author kit** | 模板下载页（可与 TEMPLATE_SOURCE 交叉引用） | Author kit zip 页面 |
-| **重要日期页** | deadline / rebuttal / camera-ready | Dates / Important dates |
-
-问用户时可用：
-
-> 你是否已有**投稿系统链接**（OpenReview / HotCRP / CMT / 期刊投稿系统等）？若有请直接贴 URL。  
-> 没有的话我会按 venue 名称去查官方投稿页，并写入 `GUIDANCE.md`。
-
-**规则：**
-
-- 只写 **https 公开链接**，不要写需要登录才能看到的一次性 token 链接（若用户只给了带 token 的 URL，记「用户提供了私有链接 — 未写入仓库」并请其提供可分享的官方页）。  
-- 每个链接旁注明：`用户提供` 或 `agent 查证 YYYY-MM-DD` + 页面标题。  
-- 查到多个候选时，列 2–3 个并请用户确认主投稿入口，再把「已确认」标在表里。  
-- 期刊还要尽量写：Editorial Manager / ScholarOne 等 **Manuscript submission** 入口，而不仅是期刊介绍页。
+投稿系统/CFP/主页/重要日期链接的采集规则与默认 IEEE 链接见 **`references/template-sources.md`**；知道 venue 后据此查证并回填 `GUIDANCE.md` §1b。
 
 ### Q3 — Compile environment
 
