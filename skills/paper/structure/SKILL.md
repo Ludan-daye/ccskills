@@ -23,7 +23,7 @@ For **computer science conference / journal papers**. This skill does **not** wr
 6. Fills a **LaTeX project** with section skeletons + theme comments  
 7. Optionally writes `paper/STRUCTURE.md` as a bilingual checklist that mirrors the `.tex`  
 
-Later skills (`paper-draft` / `paper-polish` / `paper-abstract`) must **read `paper/GUIDANCE.md` first** and edit the same LaTeX sources. If no template is chosen yet, **write in IEEE / IEEEtran format**.
+Later skills (`paper-section` / `paper-polish` / `paper-abstract`) must **read `paper/GUIDANCE.md` first** and edit the same LaTeX sources. If no template is chosen yet, **write in IEEE / IEEEtran format**.
 
 ---
 
@@ -220,7 +220,7 @@ For each confirmed section:
 % TODO: contributions (enumerate, testable)
 % TODO: optional paper roadmap
 
-% Placeholder paragraph — replace when drafting (paper-draft skill).
+% Placeholder paragraph — replace when drafting (paper-section skill).
 We will describe the problem motivation, the gap in prior work, our high-level
 approach, and list testable contributions here.
 ```
@@ -281,7 +281,7 @@ In Chinese (unless user writes English):
 6. **Confirmed architecture:** final section list  
 7. **Main files:** `main.tex`, section files, `refs.bib`, `TEMPLATE_SOURCE.md`  
 8. **Compile / sync status:** local PDF OK/fail; Overleaf push OK/fail/skipped  
-9. **Next step:** lock contributions → draft Method in LaTeX (`paper-draft`), or fix Overleaf Git auth  
+9. **Next step:** lock contributions → draft Method in LaTeX (`paper-section`), or fix Overleaf Git auth  
 
 ---
 
@@ -309,5 +309,5 @@ In Chinese (unless user writes English):
 | **`paper`** (parent) | Subagent repo scan → `paper/PAPER_REPO_SURVEY.md` (paths); routes to section skills |
 | **`paper-structure` (this)** | Intake + `GUIDANCE.md` → official LaTeX kit → architecture → skeleton `.tex` (+ Overleaf sync if configured) |
 | `paper-abstract` | Child of `paper`: menu → lock → Abstract (reads survey; does not own scan) |
-| future section skills under `paper/` | Intro/Method/… |
+| **`paper-section`** | Body sections: intro/method/experiments/… prose |
 | future `paper-polish` | Read `GUIDANCE.md` / survey, submission-oriented revise |

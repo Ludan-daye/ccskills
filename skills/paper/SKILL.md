@@ -33,7 +33,9 @@ paper/                          ← this skill (scan + routing + shared docs)
 | **`paper-abstract`** (`paper/abstract/`) | Content menu → user lock → style/format Abstract |
 | **`paper-section`** (`paper/section/`) | Body section: menu → lock → write prose into LaTeX |
 | **`paper-structure`** (`paper/structure/`) | IEEE/venue LaTeX skeleton + GUIDANCE + architecture |
-| future `paper/intro`, `paper/method`, … | More section children under `paper/` only |
+| future `paper-polish` (SP3) | Submission-oriented revise pass |
+
+`paper-section` is the generic body-section engine (intro/method/experiments/limitations/conclusion/…); no per-section skills (`paper/intro`, `paper/method`, …) are planned.
 
 **Rule:** Repo **scanning lives only here**, not in section children. Children **read** `paper/PAPER_REPO_SURVEY.md`.
 
