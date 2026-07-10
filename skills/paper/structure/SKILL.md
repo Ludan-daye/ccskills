@@ -1,11 +1,9 @@
 ---
 name: paper-structure
 description: >
-  Child of the paper skill: scaffold CS research paper LaTeX (default IEEE IEEEtran).
-  Ask journal vs conference and venue, local vs Overleaf (+ Git), log GUIDANCE.md,
-  download official template, confirm architecture, fill skeletons. Use when 论文结构,
-  cs-paper-structure, 下载模板, LaTeX 模板, Overleaf, 先定架构, IEEE template.
-  Repo survey is owned by parent paper skill (PAPER_REPO_SURVEY.md)—do not full-scan here.
+  Use when scaffolding a CS paper's LaTeX project — 论文结构, 搭骨架, 下载模板,
+  LaTeX/Overleaf, 先定架构, IEEE/venue 模板, 确认章节架构. Not for section prose
+  (paper-section) or the abstract (paper-abstract).
 ---
 
 # Paper Structure (child of `paper`)

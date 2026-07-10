@@ -1,11 +1,8 @@
 ---
 name: paper-abstract
 description: >
-  Child of the paper skill: write a CS top-venue Abstract after repo survey exists.
-  Reads paper/PAPER_REPO_SURVEY.md (from parent paper skill), presents a selectable
-  content menu, and only after user confirms applies style and IEEE/venue LaTeX.
-  Use when 写摘要, abstract, or paper-abstract — if survey is missing, run parent
-  paper skill Phase S first (do not own full-repo scan here).
+  Use when writing or revising a paper's Abstract — 写摘要, abstract, 改摘要.
+  Requires the parent paper survey first.
 ---
 
 # Paper Abstract (child of `paper`)

@@ -1,11 +1,9 @@
 ---
 name: paper
 description: >
-  Parent skill for CS research paper writing (顶会/顶刊). Owns repo survey via
-  subagent (direction, data, results with file paths → paper/PAPER_REPO_SURVEY.md),
-  routes to child skills (paper-abstract, structure, later intro/method/…). Use when
-  the user works on a paper, 写论文, paper skill, 扫仓库写摘要/各节, or any
-  paper/* section skill needs shared research context.
+  Use when the user works on a CS research paper (写论文, 顶会/顶刊 投稿), needs their
+  research repo turned into paper material, or any paper section task needs shared
+  research context. Parent of paper-structure, paper-section, paper-abstract.
 ---
 
 # Paper (parent skill)
