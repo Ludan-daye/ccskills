@@ -57,6 +57,32 @@ Update this file **after every answered question** (append or fill the template 
 > 具体是哪个？请给官方常用名或缩写（例如 NeurIPS 2026、ICML、CVPR、ACL、SOSP、IEEE TPAMI、ACM TOCS、JMLR…）。  
 > 若已知：年份、track（main / findings / workshop）、投稿阶段（initial / camera-ready / journal extension）。
 
+### Q2b — Submission links（投稿入口）
+
+在知道具体 venue 后，**必须**把「投稿相关链接」写进 `GUIDANCE.md`（用户可提供；未提供则 agent 上网查官方页并填入，标注来源与查证日期）。
+
+尽量收集并记录（能找到多少写多少，找不到写 `TBD` + 已尝试的检索词）：
+
+| 链接类型 | 说明 | 常见例子 |
+|----------|------|----------|
+| **投稿系统 / Submit** | 实际上传稿件的入口 | OpenReview、HotCRP、CMT、Softconf、IEEE Author Portal、ScholarOne、Editorial Manager |
+| **会议/期刊主页** | 当届或期刊官方站 | `https://neurips.cc/Conferences/2026/`、期刊 homepage |
+| **CFP / Author guidelines** | 截稿、格式、政策 | Call for Papers、Author Instructions |
+| **官方 LaTeX / author kit** | 模板下载页（可与 TEMPLATE_SOURCE 交叉引用） | Author kit zip 页面 |
+| **重要日期页** | deadline / rebuttal / camera-ready | Dates / Important dates |
+
+问用户时可用：
+
+> 你是否已有**投稿系统链接**（OpenReview / HotCRP / CMT / 期刊投稿系统等）？若有请直接贴 URL。  
+> 没有的话我会按 venue 名称去查官方投稿页，并写入 `GUIDANCE.md`。
+
+**规则：**
+
+- 只写 **https 公开链接**，不要写需要登录才能看到的一次性 token 链接（若用户只给了带 token 的 URL，记「用户提供了私有链接 — 未写入仓库」并请其提供可分享的官方页）。  
+- 每个链接旁注明：`用户提供` 或 `agent 查证 YYYY-MM-DD` + 页面标题。  
+- 查到多个候选时，列 2–3 个并请用户确认主投稿入口，再把「已确认」标在表里。  
+- 期刊还要尽量写：Editorial Manager / ScholarOne 等 **Manuscript submission** 入口，而不仅是期刊介绍页。
+
 ### Q3 — Compile environment
 
 > 你打算用哪种方式编译 LaTeX？  
@@ -98,6 +124,26 @@ Q4 is required before any **git push to Overleaf**. Without Git access, still al
 | 年份 / volume |  |  |
 | Track |  |  |
 | 阶段（initial / camera-ready / revision） |  |  |
+
+## 1b. 投稿链接（Submission links）
+
+> 后续 skill 与人工投稿以本表为准。更新链接时保留旧链接并标注 deprecated。
+
+| 类型 | URL | 状态 | 来源 | 备注 |
+|------|-----|------|------|------|
+| 投稿系统 Submit |  | 已确认 / 待确认 / TBD | 用户提供 / agent 查证日期 | 系统名：OpenReview/HotCRP/… |
+| 会议或期刊主页 |  |  |  |  |
+| CFP / Author guidelines |  |  |  | 页数、匿名、补充材料政策摘要 |
+| 官方 LaTeX / author kit |  |  |  | 与 vendor/ 对应 |
+| 重要日期 |  |  |  | abstract/full/rebuttal/CR 截止日期 |
+| 其他（rebuttal、camera-ready 门户等） |  |  |  |  |
+
+**截稿与门户摘录（人工可读，随查证更新）：**
+
+- Full paper deadline:  
+- Abstract deadline:  
+- Timezone:  
+- Submission portal notes:  
 
 ## 2. Compile & sync
 
@@ -158,14 +204,17 @@ Q4 is required before any **git push to Overleaf**. Without Git access, still al
 
 | 项 | 内容 |
 |----|------|
-| 官方模板 URL |  |
+| 官方模板 URL | （须与 §1b author kit 行一致或互链） |
+| 投稿系统 URL | （须与 §1b Submit 行一致） |
 | 本地 vendor 路径 |  |
 | 确认的章节架构 |  |
 | main 文件 |  |
 | 最近编译结果 |  |
 ```
 
-After each Q&A, append a **§4 transcript** entry and refresh **§1–2 tables** + **§5 playbook**.
+After each Q&A, append a **§4 transcript** entry and refresh **§1–1b–2 tables** + **§5 playbook**.
+
+After Q2 / Q2b, if submission links are missing, **search the web** for the official CFP and submit portal for that venue+year, fill §1b, and ask the user to confirm the primary submit URL before treating it as final.
 
 ---
 
@@ -224,10 +273,11 @@ Actions:
 6. Write `paper/TEMPLATE_SOURCE.md` with:
    - venue name + year  
    - official URL(s) used  
+   - **submission portal URL** (same as `GUIDANCE.md` §1b when known)  
    - download date  
    - package filename + hash if easy  
    - compile command (e.g. `latexmk -pdf main.tex`)  
-7. Copy template URL + vendor path + compile command into `GUIDANCE.md` §6.
+7. Copy template URL + **submit URL** + vendor path + compile command into `GUIDANCE.md` §1b and §6.
 
 If multiple templates exist (e.g. review vs camera-ready, journal vs preprint), **ask the user which stage** before filling; log the choice in `GUIDANCE.md`.
 
@@ -428,13 +478,14 @@ If push fails (auth), update playbook to “manual zip upload” and tell the us
 In Chinese (unless user writes English):
 
 1. **Venue:** conference/journal + name + stage  
-2. **Compile mode:** local / Overleaf / both — and Git key status (yes/no only)  
-3. **Guidance file:** path to `paper/GUIDANCE.md` (remind: all Q&A are there)  
-4. **Template source:** official URL + local `paper/vendor/...` path  
-5. **Confirmed architecture:** final section list  
-6. **Main files:** `main.tex`, section files, `refs.bib`, `TEMPLATE_SOURCE.md`  
-7. **Compile / sync status:** local PDF OK/fail; Overleaf push OK/fail/skipped  
-8. **Next step:** lock contributions → draft Method in LaTeX (`paper-draft`), or fix Overleaf Git auth  
+2. **Submission links:** primary submit URL + CFP/homepage (from `GUIDANCE.md` §1b; note 已确认/待确认)  
+3. **Compile mode:** local / Overleaf / both — and Git key status (yes/no only)  
+4. **Guidance file:** path to `paper/GUIDANCE.md` (remind: all Q&A + links are there)  
+5. **Template source:** official URL + local `paper/vendor/...` path  
+6. **Confirmed architecture:** final section list  
+7. **Main files:** `main.tex`, section files, `refs.bib`, `TEMPLATE_SOURCE.md`  
+8. **Compile / sync status:** local PDF OK/fail; Overleaf push OK/fail/skipped  
+9. **Next step:** lock contributions → draft Method in LaTeX (`paper-draft`), or fix Overleaf Git auth  
 
 ---
 

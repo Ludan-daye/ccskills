@@ -41,8 +41,8 @@
 
 面向 **CS 顶会/顶刊** 的论文**结构 skill**（不写科学正文，只搭 LaTeX 骨架）：
 
-1. **先问清**：会议还是期刊、具体 venue；**本地编译还是 Overleaf**；若 Overleaf 是否有 **Git key/远程**（可直接 push 改稿）
-2. **所有问答写入** `paper/GUIDANCE.md`（指导记录，禁止写入 token/密钥）
+1. **先问清**：会议还是期刊、具体 venue；**投稿系统/CFP/主页等链接**（用户贴或 agent 查证后写入）；**本地编译还是 Overleaf**；若 Overleaf 是否有 **Git key/远程**
+2. **所有问答与投稿链接写入** `paper/GUIDANCE.md`（指导记录，禁止写入 token/密钥）
 3. **官网下载**官方 author kit / LaTeX 模板，落到 `paper/vendor/`
 4. **对照模板确认**章节架构，再 **用 LaTeX 填充**骨架；按 GUIDANCE 本地编译或 push Overleaf
 
