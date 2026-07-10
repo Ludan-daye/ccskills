@@ -23,7 +23,7 @@ Sources: (paths)
 ## 1t. Terminology (canonical + paths)
 | term_id | canonical | expansion | source_path | status |
 |---------|-----------|-----------|-------------|--------|
-| T1 | | | | from-repo / needs-user |
+| T1 | | | | from-repo / user-confirmed / needs-user |
 
 ## 2. Story / narrative
 - status_quo:

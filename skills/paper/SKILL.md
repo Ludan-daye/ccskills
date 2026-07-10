@@ -16,12 +16,16 @@ Top-level skill for **writing a CS research paper** against a user research repo
 paper/                          ← this skill (scan + routing + shared docs)
 ├── SKILL.md
 ├── references/
+│   ├── section-themes.md
+│   ├── sections/
+│   ├── storage-framework.md
 │   ├── subagent-survey-prompt.md
 │   └── survey-template.md
 ├── abstract/                   ← paper-abstract
 │   ├── SKILL.md
 │   └── references/…
 ├── section/                   ← paper-section (body sections)
+│   └── SKILL.md
 └── structure/                  ← paper-structure (ex cs-paper-structure)
     └── SKILL.md
 ```

@@ -33,7 +33,7 @@ Write Markdown to:
 Fallback:
   ROOT/PAPER_REPO_SURVEY.md
 
-Fill the template in skills/paper/references/survey-template.md (same headings).
+Fill the template in references/survey-template.md (same headings).
 Also fill the Terminology section (canonical names + abbreviations + paths).
 
 Return to parent: (1) written file path (2) 5-line TL;DR (3) top conflicts

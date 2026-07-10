@@ -108,7 +108,7 @@ Map lock → 6 moves → prose (150–220 words default) → LaTeX.
 - Terms: use canonical forms from `paper/TERMS.md` verbatim; a `needs-user` term → ask, don't invent.  
 - No fabricated citations/numbers; numbers trace to survey `claim_id`s (see `../references/storage-framework.md`).  
 
-Outputs: English abstract; optional Chinese; update `paper/abstract.md` / `main.tex` only after lock and if writing is allowed.
+Outputs: English abstract; optional Chinese; update `paper/abstract.md` / `main.tex` only after lock and if writing is allowed. Also refresh the `abstract:` line in `paper/STATE.md` (parallel to how `section/SKILL.md` refreshes the sections line — see `../references/storage-framework.md` §4).
 
 Report: IDs, abstract, word count, move map, survey path, files touched.
 
