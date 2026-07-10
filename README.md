@@ -7,7 +7,7 @@
 | Skill | 分类 | 触发 | 说明 |
 |-------|------|------|------|
 | [`managing-research-projects`](skills/managing-research-projects/) | 科研 | 自动 | TODO 驱动的科研 / 论文项目管理 |
-| [`cs-paper-structure`](skills/cs-paper-structure/) | 论文 | 自动 | 先确认架构，再写 `paper/STRUCTURE.md`（各节主题地图） |
+| [`cs-paper-structure`](skills/cs-paper-structure/) | 论文 | 自动 | 先问会议/期刊与具体 venue → 官网下官方 LaTeX 模板 → 确认架构并填充骨架 |
 | [`scheduled-patrol`](skills/scheduled-patrol/) | 运维 | 自动 | 定时深巡检后台任务并结构化汇报 |
 | [`karpathy-guidelines`](skills/karpathy-guidelines/) | 编码 | 自动 | 少假设、最小实现、只改该改的、先定义成功标准 |
 | [`frontend-design`](skills/frontend-design/) | 前端 | 自动 | 有辨识度的 UI，避免模板化 AI 审美 |
@@ -39,18 +39,20 @@
 
 #### cs-paper-structure
 
-面向 **CS 顶会/顶刊** 的论文**结构 skill**（不写正文）：
+面向 **CS 顶会/顶刊** 的论文**结构 skill**（不写科学正文，只搭 LaTeX 骨架）：
 
-1. 与用户确认架构（默认 Abstract → Intro → Related Work → Method → Experiments → Limitations → Conclusion）
-2. 按各节主题写 `paper/STRUCTURE.md`（主题、必写/勿写、完成标准、推荐写作顺序）
+1. **先问清**：会议还是期刊、具体 venue（及年份/track/阶段）
+2. **官网下载**官方 author kit / LaTeX 模板，落到 `paper/vendor/`
+3. **对照模板确认**章节架构（默认 Abstract → Intro → Related Work → Method → Experiments → Limitations → Conclusion）
+4. **用 LaTeX 填充** `main.tex` + `sections/*.tex` 骨架（`% Theme` / `% TODO`），可选 `STRUCTURE.md` 对照表
 
 **示例：**
 
+- 「准备投 ICML，先搭 LaTeX 结构」
+- 「这是期刊 TPAMI，下载模板并填章节」
 - 「先定论文架构」
-- 「写一个结构 README」
-- 「初始化 paper/STRUCTURE.md」
 
-后续计划：`paper-draft`（按结构写各节）→ `paper-polish`（投稿前打磨）。
+后续计划：`paper-draft`（在 LaTeX 里写各节正文）→ `paper-polish`（投稿前打磨）。
 
 ### 2. 长任务巡检
 
