@@ -105,6 +105,8 @@ Map lock → 6 moves → prose (150–220 words default) → LaTeX.
 - Exemplars: `references/examples.md` (structure only)  
 - Style: `references/structure-and-style.md`  
 - Template: IEEE `abstract` / `IEEEkeywords` if no other kit (`paper-structure`)  
+- Terms: use canonical forms from `paper/TERMS.md` verbatim; a `needs-user` term → ask, don't invent.  
+- No fabricated citations/numbers; numbers trace to survey `claim_id`s (see `../references/storage-framework.md`).  
 
 Outputs: English abstract; optional Chinese; update `paper/abstract.md` / `main.tex` only after lock and if writing is allowed.
 
@@ -119,6 +121,7 @@ Report: IDs, abstract, word count, move map, survey path, files touched.
 - Numbers not in `PAPER_REPO_SURVEY.md`  
 - Pushing user git unasked  
 - Copying example paper sentences  
+- Using a term not in `paper/TERMS.md` / a number not in the survey  
 
 ---
 
