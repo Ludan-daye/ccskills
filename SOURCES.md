@@ -15,7 +15,7 @@ Vendored skills below are copied for convenience. Upstream remains authoritative
 | Skill | Author |
 |-------|--------|
 | `managing-research-projects` | Ludan-daye / ccskills |
-| `paper-structure` | Ludan-daye / ccskills (child of paper; was paper-structure) |
+| `paper-structure` | Ludan-daye / ccskills (child of paper; was cs-paper-structure) |
 | `paper` | Ludan-daye / ccskills |
 | `paper-section` | Ludan-daye / ccskills (child of paper) |
 | `paper-abstract` | Ludan-daye / ccskills (child of paper) |
