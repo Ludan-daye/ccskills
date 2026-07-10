@@ -150,4 +150,5 @@ Still scan read-only; put survey body in chat under `PAPER_REPO_SURVEY` or a use
 
 - `references/subagent-survey-prompt.md`  
 - `references/survey-template.md`  
-- Children: `abstract/SKILL.md`, `structure/SKILL.md`  
+- `references/storage-framework.md`, `references/section-themes.md`  
+- Children: `abstract/SKILL.md`, `section/SKILL.md`, `structure/SKILL.md`  
