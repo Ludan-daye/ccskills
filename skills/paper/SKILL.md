@@ -21,6 +21,7 @@ paper/                          ← this skill (scan + routing + shared docs)
 ├── abstract/                   ← paper-abstract
 │   ├── SKILL.md
 │   └── references/…
+├── section/                   ← paper-section (body sections)
 └── structure/                  ← paper-structure (ex cs-paper-structure)
     └── SKILL.md
 ```
@@ -30,6 +31,7 @@ paper/                          ← this skill (scan + routing + shared docs)
 | Child (invoke after survey when needed) | Role |
 |-----------------------------------------|------|
 | **`paper-abstract`** (`paper/abstract/`) | Content menu → user lock → style/format Abstract |
+| **`paper-section`** (`paper/section/`) | Body section: menu → lock → write prose into LaTeX |
 | **`paper-structure`** (`paper/structure/`) | IEEE/venue LaTeX skeleton + GUIDANCE + architecture |
 | future `paper/intro`, `paper/method`, … | More section children under `paper/` only |
 
@@ -89,9 +91,12 @@ Also acceptable legacy name: `ABSTRACT_REPO_SURVEY.md` — if only that exists, 
 | User intent | Next |
 |-------------|------|
 | 写摘要 / abstract | Invoke **`paper-abstract`** (do **not** re-scan unless stale) |
+| 写正文/某节 (intro/method/…) | Invoke **`paper-section`** |
 | 搭结构 / 模板 / IEEE | Invoke **`paper-structure`** |
 | 重新扫 / 结果更新了 | Re-run Phase S |
 | unclear | Ask: abstract / structure / other section |
+
+Also extract terminology (see survey template §1t) and, after scan, seed `paper/TERMS.md` and `paper/STATE.md` from the survey; mark unknown terms `needs-user`.
 
 ### S.4 Re-scan when
 
@@ -113,8 +118,12 @@ Still scan read-only; put survey body in chat under `PAPER_REPO_SURVEY` or a use
 |------|--------|-----------|
 | `paper/PAPER_REPO_SURVEY.md` | **paper** (this) | abstract, intro, method, … |
 | `paper/GUIDANCE.md` | paper-structure / paper | all |
+| `paper/TERMS.md` | **paper** (seed) | section, abstract |
+| `paper/STATE.md` | all (rollup) | paper routing |
 | `paper/ABSTRACT_MENU.md` | paper-abstract | abstract only |
 | `paper/abstract.md`, `main.tex` | paper-abstract after lock | — |
+
+完整契约见 `references/storage-framework.md`。
 
 ---
 
