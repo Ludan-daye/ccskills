@@ -1,359 +1,278 @@
 ---
 name: paper-abstract
 description: >
-  Write or revise the Abstract of a CS top-venue (顶会/顶刊) paper in official LaTeX.
-  First extract required abstract facts from the repo into a fact sheet, then rearrange
-  them into the 5–6 move abstract format using top-paper style. Use when the user asks
-  to write/polish an abstract, 写摘要, abstract for NeurIPS/ICML/CVPR/ACL/IEEE, or when
-  drafting the abstract environment after experiments exist.
+  Write or revise a CS paper Abstract by first surveying the user's research repo,
+  summarizing candidate abstract content for the user to select/edit, and only after
+  content is confirmed applying top-venue style and LaTeX format. Use when writing
+  abstracts, 写摘要, or aligning abstract text with a paper/code repository.
 ---
 
 # Paper Abstract (CS Top Venue)
 
-Write a **submission-grade Abstract** for computer science conference/journal papers.
-
-**Pipeline (fixed order):**
+Write a **submission-grade Abstract**. Fixed order — **do not skip gates**:
 
 ```text
-1) Know what an abstract must contain (required info)
-2) Extract those facts from the repository (+ user text)
-3) Fill ABSTRACT_FACTS sheet (no prose yet)
-4) Map facts → 6-move abstract outline
-5) Write English abstract (+ optional Chinese) into IEEE/venue LaTeX
+Phase 1  Survey repo → understand research direction & findings
+Phase 2  Propose "abstract should cover …" as selectable content
+Phase 3  User chooses / edits / confirms  ← HARD GATE
+Phase 4  Only then: style + format → English abstract (+ LaTeX)
 ```
 
-Do **not** invent results or citations. Do **not** jump to pretty prose before the fact sheet is filled (missing cells → ask user or mark TBD).
+**Hard gate:** Do **not** produce a polished final abstract (and do not write LaTeX abstract body as final) until the user has **confirmed the content list** (what to include / exclude).  
+Drafting style before confirmation is forbidden.
+
+Do **not** invent metrics or citations. Do **not** `git push` the user’s paper repo unless they explicitly ask.
 
 ---
 
 ## When to run
 
-- User asks to write / rewrite / shorten / strengthen the abstract  
-- Prefer **after** main experimental numbers or proofs exist in the repo  
-- Also when user pastes a draft abstract and a code/paper repo to align  
+- User points at a **repo / path** and wants an abstract  
+- User pastes a draft and a repo to realign  
+- Prefer after results exist; still run survey if early (mark weak evidence)
 
 ---
 
 ## Hard rules
 
-1. **Extract before write.** Always produce (or update) an **ABSTRACT_FACTS** block from the repo first.  
-2. **Read first:** `paper/GUIDANCE.md`, `paper/STRUCTURE.md` / `paper/FINAL_SYSTEM.md` / `README.md`, then results tables, then existing abstract.  
-3. **No fabricated metrics.** Every number must appear in repo files or explicit user text, with a **source path** on the fact sheet.  
-4. **No fake citations** in the abstract.  
-5. **Venue limits win.** Default **150–220 English words** unless GUIDANCE/author kit says otherwise.  
-6. **LaTeX:** Edit official `abstract` (and `IEEEkeywords` if any). If no project yet, **IEEE IEEEtran** default.  
-7. **Chinese discussion / English abstract** unless user requests otherwise.  
+1. **Repo survey first** when a workspace/repo is available.  
+2. **Content menu → user choice → then style.**  
+3. **No fabricated numbers.** Every candidate metric needs a source path.  
+4. **Chinese discussion** by default; **English abstract** unless user asks otherwise.  
+5. **LaTeX:** IEEE `abstract` / venue kit after content lock; default IEEE if unspecified.  
+6. **No push** to user repos without explicit request.
 
 ---
 
-## Required information (what an abstract must cover)
+# Phase 1 — Survey the repository (research direction)
 
-An abstract is a **closed sales pitch**. Before drafting, ensure these **slots** are filled.  
-`Must` = almost always; `If applicable` = only when true for this paper.
+Goal: understand **what this research is about**, not write prose yet.
 
-### A. Problem & motivation (Must)
+### 1.1 What to figure out
 
-| Slot ID | What to capture | Abstract role |
-|---------|-----------------|---------------|
-| A1 | **Domain / setting** (one phrase) | Context |
-| A2 | **Task** the paper addresses | Context |
-| A3 | **Why it matters** (safety, cost, accuracy, scale…) | Context |
-| A4 | **Who suffers / use case** (optional short) | Context |
+| Question | Output for later menu |
+|----------|------------------------|
+| Research **area** / problem domain | Direction blurb |
+| Core **research question** or claim | Candidate thesis line |
+| **Method / system** name and idea | Method bullets |
+| Main **findings** (empirical or theoretical) | Finding bullets + sources |
+| **Baselines / comparisons** | Comparison bullets |
+| **Ablations / diagnostics** | Optional bullets |
+| **Deploy / efficiency** angles | Optional bullets |
+| **Limitations** the abstract might need | Optional honesty bullets |
+| Conflicts between docs (old vs new narrative) | Flag for user |
 
-### B. Gap (Must)
+### 1.2 Where to read (priority)
 
-| Slot ID | What to capture | Abstract role |
-|---------|-----------------|---------------|
-| B1 | **Status-quo approach** (what people do now) | Gap setup |
-| B2 | **Failure mode** of status quo (over-refusal, cost, inaccuracy…) | Gap |
-| B3 | **Precise research question** (optional but strong) | Pivot setup |
+1. `README.md`, `paper/FINAL_*.md`, `paper/contributions*`, `paper/GUIDANCE.md`, `STRUCTURE.md`  
+2. Result tables: `results/**`, `*REPORT*`, main comparison / seed tables  
+3. Existing `paper/abstract*`, `main.tex` abstract (treat as **draft**, may be obsolete)  
+4. Method docs, CHANGELOG, experiment design notes  
 
-### C. Contribution / method (Must)
+Prefer the doc that claims to be the **writing authority** if numbers conflict; list conflicts for the user.
 
-| Slot ID | What to capture | Abstract role |
-|---------|-----------------|---------------|
-| C1 | **Artifact name** (method/system) or crisp description | Pivot |
-| C2 | **Core idea in one sentence** (what you do differently) | Pivot + Approach |
-| C3 | **Key mechanism** (not full method) | Approach |
-| C4 | **What you deliberately do *not* require** (e.g. no target LLM, frozen encoder) | Contrast |
-| C5 | **Contributions list (≤3)** if paper states them | Approach / scope |
+### 1.3 Short survey report (to user, Chinese)
 
-### D. Evidence (Must — at least one hard fact)
+Before the menu, give 5–10 lines:
 
-| Slot ID | What to capture | Abstract role |
-|---------|-----------------|---------------|
-| D1 | **Main metric(s)** + value(s) | Evidence |
-| D2 | **Dataset / protocol** (holdout, seeds, benchmarks) | Evidence |
-| D3 | **Baseline comparison** (who/what you beat, by how much) | Evidence |
-| D4 | **Ablation / diagnostic finding** (e.g. rule vs representation) | Evidence |
-| D5 | **Efficiency** (latency, params, compression) if claimed | Evidence |
+- **研究方向：** …  
+- **要解决的问题：** …  
+- **做法概要：** …  
+- **最硬的结果（带来源）：** …  
+- **文档冲突 / 不确定点：** …  
 
-### E. Scope & caveats (If applicable)
-
-| Slot ID | What to capture | Abstract role |
-|---------|-----------------|---------------|
-| E1 | **Generality** (other tasks/encoders) | Scope |
-| E2 | **Must-state limitation** that changes interpretation | Scope |
-| E3 | **Artifact release** (code/model) if central | Scope |
-
-### F. Keywords / search phrases (Must for indexing)
-
-| Slot ID | What to capture |
-|---------|-----------------|
-| F1 | 4–8 phrases a reviewer might search (task, method family, benchmarks) |
-
-**Minimum to draft:** A1–A3, B1–B2, C1–C3, **at least one of D1–D4**, F1.  
-If D is empty → **stop and ask** for numbers or point to which result file is authoritative.
+Do **not** yet give a full English abstract.
 
 ---
 
-## Step 1 — Extract from the repository
+# Phase 2 — Summarize what the abstract *could* cover (for user choice)
 
-Search the workspace **before** asking the user (user can still override).
+Build a **content menu** from the survey: each item is optional for the abstract unless marked recommended.
 
-### 1.1 Where to look (priority order)
+### 2.1 Group items like a checklist
 
-| Priority | Paths / patterns |
-|----------|------------------|
-| 1 | `paper/GUIDANCE.md`, `paper/STRUCTURE.md`, `paper/FINAL_SYSTEM.md`, `paper/contributions*.md` |
-| 2 | `paper/abstract.md`, `paper/main.tex` (`abstract` env), `README.md` (TL;DR / results tables) |
-| 3 | `results/**/*.md`, `results/**/*REPORT*`, `results/**/*table*`, `**/comparison*.md` |
-| 4 | `results/**/*.json` (metrics dumps; prefer mean±std over single seed if both exist) |
-| 5 | `REPORT.md`, `CHANGELOG.md`, experiment design docs |
-| 6 | User message (draft Chinese/English abstract, pasted tables) |
+Use clear IDs so the user can reply e.g. `要 A1 A2 B1 C1 D1 D2，不要 E2`.
 
-### 1.2 How to extract
+#### Block A — 背景与问题（通常要 1–2 条）
 
-1. Read authoritative narrative docs for **story** (problem, diagnosis, method).  
-2. Read **main result tables** for numbers; prefer files labeled final / 5-seed / main table.  
-3. If multiple conflicting numbers, **prefer the doc that claims to be the writing authority** (e.g. `FINAL_SYSTEM.md`); note conflicts on the fact sheet.  
-4. Copy numbers **exactly** as reported (rounding only if the paper already rounds).  
-5. Record **source path + table/section id** for every D-slot number.
+| ID | 候选内容（从仓库总结的一句话） | 建议 |
+|----|--------------------------------|------|
+| A1 | 领域/场景 | 推荐 |
+| A2 | 具体任务 | 推荐 |
+| A3 | 为何重要 | 可选 |
 
-### 1.3 Write the fact sheet (required intermediate)
+#### Block B — 缺口 / 痛点（通常要）
 
-Create or update:
+| ID | 候选内容 | 建议 |
+|----|----------|------|
+| B1 | 现有做法是什么 | 推荐 |
+| B2 | 现有做法失败在哪（如过度拒绝） | 推荐 |
+| B3 | 本文的研究问题（表示 vs 规则等） | 视论文而定 |
 
-**`paper/ABSTRACT_FACTS.md`**
+#### Block C — 方法 / 贡献（通常要）
 
-(If user forbade writing in their paper repo, keep the sheet **only in the chat reply** and still fill every slot.)
+| ID | 候选内容 | 建议 |
+|----|----------|------|
+| C1 | 方法/系统名称 | 推荐 |
+| C2 | 核心思想一句话 | 推荐 |
+| C3 | 关键机制（极短） | 推荐 |
+| C4 | 明确不依赖什么（无目标 LLM、冻结编码器…） | 可选 |
+| C5a/b/c | 贡献点 1/2/3（拆开勾选） | 可选 |
 
-Template:
+#### Block D — 证据 / 数字（至少要用户选中的硬结果）
 
-```markdown
-# ABSTRACT_FACTS
-> Extracted for paper-abstract. Do not invent. Status: EXTRACTED | NEEDS_USER | READY_TO_DRAFT
+| ID | 候选内容（数值 + 来源路径） | 建议 |
+|----|------------------------------|------|
+| D1 | 主指标 / 主表结论 | 推荐 |
+| D2 | 评测协议（留出、种子数、基准名） | 推荐从简 |
+| D3 | 与基线/护栏对比 | 推荐 |
+| D4 | 关键消融（如几何规则 vs 判别头） | 诊断类论文推荐 |
+| D5 | 效率/压缩/延迟 | 可选 |
 
-## Meta
-- Venue / template: (IEEE-default / …)
-- Word limit: 
-- Paper type: method | system | theory | empirical | efficiency | diagnosis
-- Authoritative result doc: `path`
-- Extraction date:
+#### Block E — 范围与收尾（可选）
 
-## A. Problem & motivation
-- A1 Domain:
-- A2 Task:
-- A3 Why it matters:
-- A4 Use case: (optional)
+| ID | 候选内容 | 建议 |
+|----|----------|------|
+| E1 | 泛化/多变体 Pareto | 可选 |
+| E2 | 必须诚实写的局限 | 可选 |
+| E3 | 开源/工件 | 可选 |
 
-## B. Gap
-- B1 Status quo:
-- B2 Failure mode:
-- B3 Research question: (optional)
+#### Block F — 关键词（可改）
 
-## C. Method / contribution
-- C1 Name:
-- C2 Core idea (1 sentence):
-- C3 Mechanism (short):
-- C4 Not required / contrast:
-- C5 Contributions (≤3):
-  1.
-  2.
-  3.
+| ID | 候选短语列表 |
+|----|----------------|
+| F1 | 4–8 个检索词，用户可增删 |
 
-## D. Evidence (each line: value — source)
-- D1 Main metrics:
-- D2 Protocol / data:
-- D3 vs baselines:
-- D4 Ablation / diagnosis:
-- D5 Efficiency: (optional)
+### 2.2 Present format (required)
 
-## E. Scope
-- E1 Generality:
-- E2 Limitation to mention:
-- E3 Release:
+Show the user:
 
-## F. Keywords
-- F1: …
-
-## Conflicts / TBD
-- (list anything inconsistent or missing)
-
-## Sources scanned
-- `path` — what was taken
-```
-
-Mark status:
-
-- `NEEDS_USER` if Must slots missing  
-- `READY_TO_DRAFT` when minimum set is complete  
-
-**Show the fact sheet to the user** (brief table or path). If NEEDS_USER, ask only for missing Must slots—then continue.
-
----
-
-## Step 2 — Pick exemplars
-
-Open `references/examples.md` and `references/structure-and-style.md`.
-
-| Paper type (from facts) | Prefer examples |
-|-------------------------|-----------------|
-| New model/architecture | A Transformer, B ResNet |
-| Pretrain / representation | C BERT, E GPT-3 |
-| Efficiency / adaptation | D LoRA, H BatchNorm |
-| Algorithm / RL / optimization | G PPO, F VAE |
-| Theory / inference | F VAE |
-| Diagnosis + simple fix | H BatchNorm, D LoRA |
-| Large empirical | E GPT-3 |
-
-Imitate **move order and density only**, never copy sentences.
-
----
-
-## Step 3 — Map facts → abstract format (outline)
-
-Rearrange **only from ABSTRACT_FACTS** into six moves:
+1. Survey blurb (Phase 1)  
+2. **「摘要内容菜单」** table(s) with ID / 一句话 / 来源 / 建议(推荐|可选|不建议)  
+3. A **default selection** (your recommendation), e.g.:
 
 ```text
-[1 Context]  ← A1 + A2 (+ A3 short)
-[2 Gap]      ← B1 + B2
-[3 Pivot]    ← B3? + C1 + C2   ("We propose/show…")
-[4 Approach] ← C3 + C4 (+ C5 compressed)
-[5 Evidence] ← D1 + D2 + D3 (+ D4/D5 if space)
-[6 Scope]    ← E1/E2/E3 if needed for honesty or impact
+默认勾选：A1 A2 B1 B2 C1 C2 C3 D1 D3 D4 F1
+未勾选：A3 C4 C5* D2 D5 E*
 ```
 
-### Mapping rules
+4. Ask explicitly:
 
-| Rule | Detail |
-|------|--------|
-| One fact → one job | Don’t dump all of C5 into Evidence |
-| Numbers only in 5 (or end of 4) | Keep Approach mechanism-light |
-| Diagnosis papers | Put D4 (e.g. linear separability / ablation) in Pivot or early Evidence |
-| Drop for length | Prefer drop E, then secondary D metrics, then A4 |
-| Never add | Claims not on the fact sheet |
+> 请选择摘要要写的内容：  
+> - 回复 `默认` 采用上面默认勾选；或  
+> - 列出要的 ID（如 `A1 A2 B2 C1 C2 D1 D4`），可加 `不要 xxx`；或  
+> - 指出要改写的条目（如「D1 改成只报 J，不报 FPR」）。  
+> **确认内容之前我不会按顶会文风写最终 Abstract。**
 
-Fill:
-
-```text
-[1 Context]  ...
-[2 Gap]      ...
-[3 Pivot]    ...
-[4 Approach] ...
-[5 Evidence] ...
-[6 Scope]    ...
-```
-
-Default sentence budget:
-
-| Move | Sentences |
-|------|-----------|
-| Context | 1–2 |
-| Gap | 1–2 |
-| Pivot + name | 1 |
-| Approach | 1–3 |
-| Evidence | 2–4 |
-| Scope | 0–2 |
+Optionally save the menu to `paper/ABSTRACT_MENU.md` (only if writing in that repo is OK).
 
 ---
 
-## Step 4 — Draft prose from the outline
+# Phase 3 — HARD GATE: user confirms content
 
-### Pivot templates (pick one)
+Wait for user response.
 
-- *We propose X, a … that …*  
-- *We introduce X, which …*  
-- *Here we show that …*  
-- *We study whether … and find that …* (diagnosis-style)
-
-### Evidence templates
-
-- *On D, X achieves M, improving over B by Δ.*  
-- *Compared to B, X reduces P by × while matching quality on …*  
-- *Under protocol P (N seeds), … among K methods …*  
-- *In a controlled ablation, metric falls from a→b while … rises.*
-
-### Style
-
-- Active: *We …*  
-- Contrast: *Unlike / Whereas / Compared to*  
-- Numbers over bare *significant*  
-- Name method early; no lit review; no hyperparameter dump  
-- Details: `references/structure-and-style.md`  
-
-### Anti-patterns
-
-- Prose without ABSTRACT_FACTS  
-- Numbers with no source on the sheet  
-- Copying `examples.md`  
-- Marketing without mechanism  
-- Claims not in Experiments / authoritative doc  
-
----
-
-## Step 5 — Self-review
-
-| Check | Fail → |
-|-------|--------|
-| Every Must slot reflected or consciously dropped with note | Fix outline |
-| Every number matches ABSTRACT_FACTS source | Correct or remove |
-| Closed loop problem→idea→result | Add move |
-| 150–220 words (or venue limit) | Cut Scope / extra metrics |
-| Search keywords (F1) appear | Insert natural phrases |
-| IEEE/venue abstract env OK | Adjust wrappers |
-
----
-
-## Step 6 — Write into the paper project
-
-1. Prefer sink: `paper/sections/abstract.tex` → `paper/main.tex` `abstract` → `STRUCTURE.md` path.  
-2. Write English abstract; optional Chinese mirror in `paper/abstract.md`.  
-3. Keep `% Theme` comments; set status drafted.  
-4. Ensure `paper/ABSTRACT_FACTS.md` is saved (unless user forbade repo writes).  
-5. Append GUIDANCE transcript if `GUIDANCE.md` exists:
+Then produce **`CONTENT_LOCK`** (confirmed list only):
 
 ```markdown
-### YYYY-MM-DD — paper-abstract
-- Extracted facts from: …
-- Drafted abstract (~N words); exemplars: …
-- Numbers used: … (sources …)
+# CONTENT_LOCK (user confirmed)
+- Included: A1, A2, …
+- Excluded: …
+- Wording overrides: …
+- Numbers locked (value ← source): …
+- Status: CONFIRMED
 ```
 
-6. Compile only if GUIDANCE says local TeX; never fake Overleaf.
+If user is vague (“差不多就行”), restate the default selection and ask for a one-word **`确认`**.  
+If they add a claim with **no repo source**, either drop it or ask for a number/source—do not invent.
 
-```latex
-\begin{abstract}
-... single paragraph default ...
-\end{abstract}
-```
+**Only after CONTENT_LOCK is CONFIRMED → Phase 4.**
 
 ---
 
-## Step 7 — Report to user
+# Phase 4 — Style and format (after content lock)
 
-In Chinese (unless user writes English):
+Now (and only now) apply top-venue style and LaTeX shape **using solely CONTENT_LOCK items**.
 
-1. **Fact sheet summary** (or path to `ABSTRACT_FACTS.md`) — what was extracted  
-2. **Missing / TBD** slots (if any)  
-3. **Final English abstract** (copy-paste block)  
-4. Word count vs limit  
-5. **Move map** (1–6) one line each  
-6. Exemplars used  
-7. Files touched + compile status  
-8. Risks (conflict numbers, small eval sets, over-claim)
+### 4.1 Map locked items → 6 moves
 
-Do **not** push to the user’s paper repo unless they explicitly ask.
+```text
+[1 Context]  ← A*
+[2 Gap]      ← B*
+[3 Pivot]    ← C1–C2 (+ B3 if locked)
+[4 Approach] ← C3–C4 (+ selected C5)
+[5 Evidence] ← D* locked only
+[6 Scope]    ← E* if locked
+```
+
+Sentence budget: Context 1–2, Gap 1–2, Pivot 1, Approach 1–3, Evidence 2–4, Scope 0–2.  
+Target **150–220 English words** unless venue limit differs.
+
+### 4.2 Exemplars (structure only)
+
+| Type | Examples in `references/examples.md` |
+|------|--------------------------------------|
+| Diagnosis + fix | BatchNorm, LoRA |
+| New architecture | Transformer, ResNet |
+| Efficiency | LoRA, BatchNorm |
+| Theory | VAE |
+| Large empirical | GPT-3 |
+
+Imitate move density/contrast; **never copy sentences**.
+
+### 4.3 Style rules
+
+- Active: *We propose / show / find*  
+- Contrast: *Unlike / Compared to / Whereas*  
+- Numbers over bare “significant”  
+- No lit review; no hyperparameter dump  
+- See `references/structure-and-style.md`  
+
+### 4.4 Self-check
+
+| Check | |
+|-------|--|
+| Every sentence supported by CONTENT_LOCK | |
+| No locked-out IDs leaked in | |
+| Closed loop problem→idea→result | |
+| Word limit | |
+| Keywords from F1 appear naturally | |
+
+### 4.5 Write outputs
+
+1. English abstract (final)  
+2. Optional Chinese mirror  
+3. LaTeX `\begin{abstract}...\end{abstract}` (+ `IEEEkeywords` if IEEE)  
+4. If allowed: `paper/abstract.md`, update `main.tex` abstract env  
+5. Optional: keep `ABSTRACT_MENU.md` + `CONTENT_LOCK` section for audit  
+
+### 4.6 Report to user
+
+1. Confirmed content IDs  
+2. Final English abstract  
+3. Word count  
+4. Move map  
+5. Exemplars  
+6. Files touched (if any)  
+7. Risks  
+
+---
+
+## If there is no repo
+
+- Build the same **menu** from user description / pasted draft only  
+- Mark sources as `user-provided`  
+- Still require Phase 3 confirm before Phase 4  
+
+---
+
+## Anti-patterns
+
+- Jumping to a full English abstract before user selects content  
+- Hiding the menu as “internal only”  
+- Mixing obsolete README numbers with FINAL tables without flagging  
+- Pushing to the user’s git remote unasked  
+- Copying example paper sentences  
 
 ---
 
@@ -361,14 +280,14 @@ Do **not** push to the user’s paper repo unless they explicitly ask.
 
 | Skill | Role |
 |-------|------|
-| `cs-paper-structure` | IEEE/venue template, GUIDANCE, section skeleton |
-| **`paper-abstract` (this)** | Extract facts → format → abstract prose |
-| future `paper-intro` | Shares C5 contributions; deeper narrative |
-| future `paper-polish` | Whole-paper pass |
+| `cs-paper-structure` | IEEE/venue template, GUIDANCE, skeleton |
+| **`paper-abstract` (this)** | Repo survey → content menu → lock → style/format |
+| future section skills | Intro/Method/… after abstract content is stable |
 
 ---
 
 ## References
 
-- `references/structure-and-style.md` — structure + language analysis  
-- `references/examples.md` — annotated top-paper abstracts  
+- `references/required-info.md` — slot definitions  
+- `references/structure-and-style.md` — style analysis  
+- `references/examples.md` — annotated abstracts  

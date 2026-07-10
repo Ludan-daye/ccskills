@@ -1,45 +1,49 @@
-# Abstract required information (quick card)
+# Abstract content menu (user-facing)
 
-Use with `SKILL.md` Step 1–3. **Extract → fact sheet → format.**
+Used by `paper-abstract` Phase 1–3. **Survey repo → propose items → user selects → then style.**
 
-## Must-have slots
-
-| ID | Content | Goes to move |
-|----|---------|--------------|
-| A1–A3 | Domain, task, why it matters | 1 Context |
-| B1–B2 | Status quo + failure | 2 Gap |
-| C1–C3 | Name, idea, mechanism | 3–4 Pivot/Approach |
-| D* | ≥1 real metric/protocol/baseline/ablation | 5 Evidence |
-| F1 | Search keywords | sprinkled in 1–5 |
-
-## Nice-to-have
-
-| ID | Content | Move |
-|----|---------|------|
-| C4 | What you don’t need (no LLM, frozen enc…) | 4 |
-| C5 | ≤3 contributions | 4 or 6 |
-| D5 | Latency / size / compression | 5 |
-| E* | Generality, honesty limit, code release | 6 |
-
-## Repo extraction cheat sheet
+## Workflow
 
 ```text
-paper/GUIDANCE.md, STRUCTURE.md, FINAL_SYSTEM.md, contributions*
-README.md (TL;DR + tables)
-paper/abstract.md, main.tex
-results/**/REPORT*, *table*, *pareto*, *seeds*.json
-REPORT.md, experimental design docs
+Repo survey (direction, findings, sources)
+    → Content menu with IDs (A/B/C/D/E/F)
+    → User: 默认 / 列出 ID / 修改条目
+    → CONTENT_LOCK
+    → Style + format (6 moves, English, LaTeX)
 ```
 
-## Format after extract
+## Menu blocks
+
+| Block | Meaning | Typical abstract move |
+|-------|---------|------------------------|
+| **A** | 背景与问题 | Context |
+| **B** | 缺口与痛点 | Gap |
+| **C** | 方法与贡献 | Pivot + Approach |
+| **D** | 证据与数字（带来源） | Evidence |
+| **E** | 范围、局限、开源 | Scope |
+| **F** | 关键词 | sprinkled |
+
+## Suggested defaults (agent may adjust)
+
+- Always propose: A1 A2 B1 B2 C1 C2 C3 + strongest D* + F1  
+- Diagnosis papers: add D4  
+- Efficiency papers: add D5  
+- Leave C5 contribution laundry list optional (abstract is short)
+
+## User reply examples
 
 ```text
-Context  ← A
-Gap      ← B
-Pivot    ← C1–C2 (+ diagnostic D4)
-Approach ← C3–C4
-Evidence ← D
-Scope    ← E
+默认
 ```
 
-No new claims beyond the fact sheet.
+```text
+要 A1 A2 B1 B2 C1 C2 C3 D1 D4，不要 E2，D3 只写相对最强基线
+```
+
+```text
+确认
+```
+
+## After lock only
+
+Map locked IDs → Context / Gap / Pivot / Approach / Evidence / Scope → write prose.
