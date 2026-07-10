@@ -284,7 +284,7 @@ Create `skills/paper/references/sections/_TEMPLATE.md`:
 - [ ] **Step 2: Verify**
 
 Run: `grep -c "^## " skills/paper/references/sections/_TEMPLATE.md`
-Expected: 9.
+Expected: 10.
 
 - [ ] **Step 3: Commit**
 
