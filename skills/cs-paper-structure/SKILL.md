@@ -12,29 +12,31 @@ description: >
 
 For **computer science conference / journal papers**. This skill does **not** write full scientific prose or invent results. It:
 
-1. Clarifies **venue type + exact venue** with the user  
+1. Clarifies **venue type + exact venue** with the user (**default template = IEEE** if unspecified)  
 2. Clarifies **compile target**: local LaTeX vs Overleaf (and Git key / remote if Overleaf)  
 3. **Writes every Q&A into a guidance text file** (`paper/GUIDANCE.md`) as the lasting brief  
-4. Fetches the **official LaTeX style/template** from the venue (or publisher) website  
+4. Fetches the **official LaTeX style/template** (IEEE by default; venue-specific when named)  
 5. Confirms **section architecture** with the user (aligned to that template)  
 6. Fills a **LaTeX project** with section skeletons + theme comments  
 7. Optionally writes `paper/STRUCTURE.md` as a bilingual checklist that mirrors the `.tex`  
 
-Later skills (`paper-draft` / `paper-polish`) must **read `paper/GUIDANCE.md` first** and edit the same LaTeX sources.
+Later skills (`paper-draft` / `paper-polish` / `paper-abstract`) must **read `paper/GUIDANCE.md` first** and edit the same LaTeX sources. If no template is chosen yet, **write in IEEE / IEEEtran format**.
 
 ---
 
 ## Hard rules
 
-1. **Venue first.** Do not scaffold template fills until you know **conference vs journal** and the **exact venue name** (and year/track if it matters for the template).  
-2. **Compile environment next.** Must know **local vs Overleaf** before promising compile/push steps.  
-3. **Log every intake answer to disk.** All Step 0 questions and answers go into `paper/GUIDANCE.md` (create early; update after each answer). This file is the project brief for humans and later skills.  
-4. **Never store secrets in the repo.** Do **not** write Git tokens, Overleaf passwords, SSH private keys, or API keys into `GUIDANCE.md` or any project file. Only record: has_key yes/no, remote URL if non-secret, and *where* the user keeps credentials (e.g. “SSH agent”, “env var — not committed”).  
-5. **Official template only.** Prefer the venue/publisher official zip/cls/sty. Do **not** invent a fake `\documentclass` that “looks like” the venue. If download fails, stop and ask the user for a local path or URL.  
-6. **Confirm architecture** after the template is in hand. Never silently finalize section order.  
-7. **No fake content.** Skeleton text only: `% TODO` comments, `\section{}` placeholders, short `% Theme: ...` notes. No fabricated numbers, citations, or abstract claims.  
-8. **Do not overwrite** existing main `.tex` / project without confirmation.  
-9. Discuss with the user in **Chinese** unless they use English; LaTeX section titles follow the **venue language** (almost always English).
+1. **Default template is IEEE.** If the user does **not** name a specific venue, or says “随便 / 先写着 / 默认格式 / 通用模板”, use the **official IEEE LaTeX package (IEEEtran)** downloaded from IEEE (or CTAN as fallback). Do **not** invent a home-grown class.  
+2. **Venue when known.** If they name NeurIPS / ACL / ACM / Springer / a specific IEEE Transactions, prefer **that venue’s official kit**; still log it in GUIDANCE. Many IEEE venues still use IEEEtran—use the mode they require (`conference` vs `journal`).  
+3. **Ask type early, but do not block forever on exact venue.** Q1 (conference vs journal) is enough to pick IEEE conference vs journal mode. Exact venue (Q2) remains strongly preferred for submit links; if user defers, set `venue_name: IEEE-default (unspecified)` and proceed with IEEE.  
+4. **Compile environment next.** Must know **local vs Overleaf** before promising compile/push steps.  
+5. **Log every intake answer to disk.** All Step 0 questions and answers go into `paper/GUIDANCE.md` (create early; update after each answer). This file is the project brief for humans and later skills.  
+6. **Never store secrets in the repo.** Do **not** write Git tokens, Overleaf passwords, SSH private keys, or API keys into `GUIDANCE.md` or any project file. Only record: has_key yes/no, remote URL if non-secret, and *where* the user keeps credentials (e.g. “SSH agent”, “env var — not committed”).  
+7. **Official template only.** Prefer the venue/publisher official zip/cls/sty. Do **not** invent a fake `\documentclass` that “looks like” the venue. If download fails, stop and ask the user for a local path or URL.  
+8. **Confirm architecture** after the template is in hand. Never silently finalize section order.  
+9. **No fake content.** Skeleton text only: `% TODO` comments, `\section{}` placeholders, short `% Theme: ...` notes. No fabricated numbers, citations, or abstract claims.  
+10. **Do not overwrite** existing main `.tex` / project without confirmation.  
+11. Discuss with the user in **Chinese** unless they use English; LaTeX section titles follow the **venue language** (almost always English).
 
 ---
 
@@ -50,16 +52,31 @@ Update this file **after every answered question** (append or fill the template 
 
 ### Q1 — Type
 
-> 这篇准备投 **会议（conference）** 还是 **期刊（journal）**？
+> 这篇准备投 **会议（conference）** 还是 **期刊（journal）**？  
+> （若尚未定 venue：**默认按 IEEE 格式**搭 LaTeX；会议用 `IEEEtran` conference 模式，期刊用 journal 模式。）
 
 ### Q2 — Exact venue
 
 > 具体是哪个？请给官方常用名或缩写（例如 NeurIPS 2026、ICML、CVPR、ACL、SOSP、IEEE TPAMI、ACM TOCS、JMLR…）。  
-> 若已知：年份、track（main / findings / workshop）、投稿阶段（initial / camera-ready / journal extension）。
+> 若已知：年份、track（main / findings / workshop）、投稿阶段（initial / camera-ready / journal extension）。  
+> **若暂时不定：** 回复「先用默认 / IEEE」即可 → 使用官方 **IEEE IEEEtran** 模板继续。
+
+Log in GUIDANCE:
+
+- If named venue → `template_policy: venue-official`  
+- If deferred → `template_policy: IEEE-default` + note user can switch later  
 
 ### Q2b — Submission links（投稿入口）
 
 在知道具体 venue 后，**必须**把「投稿相关链接」写进 `GUIDANCE.md`（用户可提供；未提供则 agent 上网查官方页并填入，标注来源与查证日期）。
+
+若 **IEEE-default（未指定 venue）**，至少写入：
+
+| 类型 | 默认 URL（查证后可更新） |
+|------|--------------------------|
+| IEEE 会议模板页 | https://www.ieee.org/conferences/publishing/templates |
+| IEEE 期刊 / Author Center 模板 | https://template-selector.ieee.org/ 与 IEEE Author Center article templates |
+| CTAN IEEEtran（备用） | https://ctan.org/pkg/ieeetran |
 
 尽量收集并记录（能找到多少写多少，找不到写 `TBD` + 已尝试的检索词）：
 
@@ -104,7 +121,8 @@ Update this file **after every answered question** (append or fill the template 
 - Existing draft or repo path  
 - Local TeX distribution if Q3 is A/C (`which latexmk` / TeX Live year)  
 
-**Gate:** Without Q1+Q2+Q3 answers, do not download official kits or fill section skeletons.  
+**Gate:** Without **Q1 + Q3** answers, do not download kits or fill skeletons.  
+**Q2** may be “IEEE-default / 未指定”.  
 Q4 is required before any **git push to Overleaf**. Without Git access, still allowed to scaffold locally and give upload instructions.
 
 ### `paper/GUIDANCE.md` template (write and keep updated)
@@ -120,7 +138,9 @@ Q4 is required before any **git push to Overleaf**. Without Git access, still al
 | 项 | 用户回答 | 记录时间 |
 |----|----------|----------|
 | 类型（会议/期刊） |  |  |
-| 具体 venue |  |  |
+| 具体 venue | （可写 IEEE-default / 未指定） |  |
+| 模板策略 | IEEE-default / venue-official |  |
+| IEEEtran 模式 | conference / journal / technote |  |
 | 年份 / volume |  |  |
 | Track |  |  |
 | 阶段（initial / camera-ready / revision） |  |  |
@@ -220,7 +240,34 @@ After Q2 / Q2b, if submission links are missing, **search the web** for the offi
 
 ## Step 1 — Locate and download the official format
 
-### 1.1 Find the official source
+### 1.0 Default path: IEEE (when venue unspecified or user asks for default)
+
+**Always try official IEEE sources first** for the default case:
+
+| Step | Action |
+|------|--------|
+| 1 | Open IEEE conference templates: https://www.ieee.org/conferences/publishing/templates |
+| 2 | And/or IEEE Template Selector: https://template-selector.ieee.org/ |
+| 3 | IEEE Author Center — article templates (journals/transactions) |
+| 4 | Download the **LaTeX** zip for **conference** or **journal** per Q1 |
+| 5 | Prefer files based on **`IEEEtran.cls`** (e.g. bare conference / bare journal examples) |
+| 6 | Fallback if IEEE site blocks automation: CTAN `ieeetran` package https://ctan.org/pkg/ieeetran — still document as “IEEE IEEEtran via CTAN” in TEMPLATE_SOURCE.md |
+
+**Class options (default policy):**
+
+| Q1 answer | Suggested start |
+|-----------|-----------------|
+| conference | `\documentclass[conference]{IEEEtran}` (or kit’s bare_conf) |
+| journal | `\documentclass[journal]{IEEEtran}` (or kit’s bare_jrnl) |
+| unknown | Ask once; if user still skips → **conference** mode as temporary default and label it clearly in GUIDANCE |
+
+Tell the user explicitly:
+
+> 未指定具体会议/期刊时，已按 **IEEE 官方 IEEEtran** 下载并搭建；若之后改投 ACL/NeurIPS/ACM 等，可再换官方包并迁移正文。
+
+Log template URLs + download date in `GUIDANCE.md` §1b / §6.
+
+### 1.1 Find the official source (when venue **is** specified)
 
 Use web search / open pages. Priority order:
 
@@ -229,13 +276,15 @@ Use web search / open pages. Priority order:
 | 1 | Venue **author kit / call for papers / submission instructions** page for the correct year |
 | 2 | Publisher portal (IEEE Author Center, ACM Master Article Template, Springer LNCS, Elsevier, OpenReview/ML conference site, CVF, ACL pub kit, USENIX, etc.) |
 | 3 | User-supplied URL or local zip/cls |
+| 4 | If venue is IEEE-* but kit unclear → same IEEE default path as §1.0 |
 
 **Examples of what “official” looks like (illustrative, always re-verify for the year):**
 
+- **Default / unspecified:** IEEE IEEEtran (conference or journal)  
 - ML conferences: often `*.zip` style kit on the conference site or linked from CFP  
 - CVF (CVPR/ICCV/ECCV): CVF author guidelines + LaTeX  
 - ACL anthology pubs: official ACL pub checklist / LaTeX  
-- IEEE journals/conferences: IEEE template (often via IEEE / conference site)  
+- IEEE journals/conferences: IEEE template selector + IEEEtran  
 - ACM: ACM consolidated template (`acmart`)  
 - Springer LNCS: LNCS author package  
 
@@ -247,7 +296,7 @@ Preferred layout:
 paper/
 ├── GUIDANCE.md                # required — Q&A log + compile/sync playbook
 ├── vendor/                    # official kit, unmodified when possible
-│   └── <venue>-template/      # extracted zip
+│   └── ieee-ieeetran/         # default; or <venue>-template/
 ├── main.tex                   # our working main (or venue’s main renamed)
 ├── sections/                  # optional split files
 │   ├── abstract.tex
@@ -491,11 +540,12 @@ In Chinese (unless user writes English):
 
 ## Anti-patterns
 
-- Scaffolding before knowing journal vs conference and exact venue  
+- Blocking forever because the user has not named a venue (use **IEEE default** instead)  
+- Using a random “IEEE-like” Overleaf clone instead of **official IEEE / IEEEtran** sources  
 - Ignoring compile mode (local vs Overleaf) or forgetting to ask about Overleaf Git  
 - Leaving intake answers only in chat — **must** write `paper/GUIDANCE.md`  
 - Committing Overleaf tokens, passwords, or private keys  
-- Using a random Overleaf “NeurIPS-like” template instead of the official kit  
+- Using a random Overleaf “NeurIPS-like” template instead of the official kit when a venue **was** named  
 - Writing multi-page Method prose in this skill  
 - Inventing bibliography entries  
 - Ignoring anonymity / page-limit options in the official class  

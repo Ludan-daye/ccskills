@@ -25,7 +25,7 @@ This skill fills the paper’s **LaTeX `abstract` environment** (or `paper/secti
 2. **No fabricated metrics.** Every number must come from user-provided results, tables in the repo, or explicit user text. If missing, ask—do not invent BLEU/accuracy/speedups.  
 3. **No fake citations** in the abstract (top CS abstracts often have zero).  
 4. **Venue limits win.** If author kit / GUIDANCE states a max length (words/characters), enforce it. Default target: **150–220 words** unless venue says otherwise.  
-5. **Match the LaTeX project.** Edit the official template’s abstract environment; keep surrounding class options untouched.  
+5. **Match the LaTeX project.** Edit the official template’s `abstract` environment (and `IEEEkeywords` if present). If no project yet, assume **IEEE IEEEtran** default (see `cs-paper-structure`) and write abstract text accordingly—do **not** invent a non-IEEE layout.  
 6. **Chinese discussion / English abstract** unless the user requests another language for the abstract itself.
 
 ---
