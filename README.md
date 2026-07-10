@@ -8,7 +8,8 @@
 |-------|------|------|------|
 | [`managing-research-projects`](skills/managing-research-projects/) | 科研 | 自动 | TODO 驱动的科研 / 论文项目管理 |
 | [`cs-paper-structure`](skills/cs-paper-structure/) | 论文 | 自动 | 先问会议/期刊与具体 venue → 官网下官方 LaTeX 模板 → 确认架构并填充骨架 |
-| [`paper-abstract`](skills/paper-abstract/) | 论文 | 自动 | 顶会/顶刊 Abstract：结构公式 + 名篇示例风格，写入 LaTeX |
+| [`paper`](skills/paper/) | 论文 | 自动 | **论文父 skill**：subagent 扫仓库 → `PAPER_REPO_SURVEY.md`（带路径），再路由到各节 |
+| [`paper-abstract`](skills/paper/abstract/) | 论文 | 自动 | **paper 子 skill**：菜单勾选 → 确认后写 Abstract（不负责全库扫描） |
 | [`scheduled-patrol`](skills/scheduled-patrol/) | 运维 | 自动 | 定时深巡检后台任务并结构化汇报 |
 | [`karpathy-guidelines`](skills/karpathy-guidelines/) | 编码 | 自动 | 少假设、最小实现、只改该改的、先定义成功标准 |
 | [`frontend-design`](skills/frontend-design/) | 前端 | 自动 | 有辨识度的 UI，避免模板化 AI 审美 |
@@ -16,7 +17,7 @@
 | [`grill-me`](skills/grill-me/) | 规划 | **仅手动** `/grill-me` | 入口，转去 `grilling` |
 | [`handoff`](skills/handoff/) | 协作 | **仅手动** `/handoff` | 将会话压成交接文档给新 agent |
 
-共 **9** 个 skill（`grill-me` + `grilling` 成对使用）。
+共 **10** 个 skill（`grill-me` + `grilling` 成对使用）。
 
 ---
 
@@ -54,6 +55,12 @@
 - 「先定论文架构」
 
 后续计划：`paper-draft`（在 LaTeX 里写各节正文）→ `paper-polish`（投稿前打磨）。
+
+#### paper / paper-abstract
+
+- **`paper`**：加载时派 subagent 扫描用户研究仓库，写出 `paper/PAPER_REPO_SURVEY.md`（方向/数据/结果，**均带路径**），再路由到各节 skill。
+- **`paper-abstract`**：挂在 `paper` 下；**不扫全库**，只读 survey → 内容菜单 → 你确认 → 再按顶会风格写 Abstract。
+
 
 ### 2. 长任务巡检
 
@@ -163,7 +170,7 @@ ccskills/
 └── skills/
     ├── managing-research-projects/   # 自研
     ├── cs-paper-structure/           # 自研（论文结构 + LaTeX 骨架）
-    ├── paper-abstract/               # 自研（Abstract 写作）
+    ├── paper/                       # 自研（论文父 skill + abstract 子 skill）
     ├── scheduled-patrol/             # 自研
     ├── karpathy-guidelines/          # 第三方
     ├── frontend-design/              # 第三方
@@ -182,7 +189,8 @@ ccskills/
 |------|------------|
 | 论文 / 实验仓库 | `managing-research-projects` |
 | 顶会论文先定章节架构 | `cs-paper-structure` |
-| 写/改 Abstract | `paper-abstract` |
+| 论文写作总入口 / 扫仓库 | `paper` |
+| 写/改 Abstract | `paper-abstract`（依赖 `paper` 的 survey） |
 | 多个后台任务跑很久 | `scheduled-patrol` |
 | 日常写代码 | `karpathy-guidelines` |
 | 做落地页 / 组件 UI | `frontend-design` |
@@ -195,5 +203,5 @@ ccskills/
 
 ## 许可
 
-- **自研 skill**（`managing-research-projects`、`cs-paper-structure`、`paper-abstract`、`scheduled-patrol`）：与本仓库相同，可自由使用与修改。
+- **自研 skill**（`managing-research-projects`、`cs-paper-structure`、`paper`、`paper-abstract`、`scheduled-patrol`）：与本仓库相同，可自由使用与修改。
 - **第三方 skill**：保留原作者许可与归属，详见 [SOURCES.md](SOURCES.md)。再分发时请遵守各自 LICENSE。

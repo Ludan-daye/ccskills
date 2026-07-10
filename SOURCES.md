@@ -16,7 +16,8 @@ Vendored skills below are copied for convenience. Upstream remains authoritative
 |-------|--------|
 | `managing-research-projects` | Ludan-daye / ccskills |
 | `cs-paper-structure` | Ludan-daye / ccskills |
-| `paper-abstract` | Ludan-daye / ccskills |
+| `paper` | Ludan-daye / ccskills |
+| `paper-abstract` | Ludan-daye / ccskills (child of paper) |
 | `scheduled-patrol` | Ludan-daye / ccskills |
 
 `cs-paper-structure` section themes draw on standard scientific IMRaD practice and CS paper guidance (e.g. Penn State technical writing guides, MIT EECS Communication Lab Methods guidance); not affiliated with those institutions.
@@ -26,3 +27,5 @@ Vendored skills below are copied for convenience. Upstream remains authoritative
 Packaged into this repo after local install under Grok (`~/.grok/skills/`) for personal skill management and multi-agent reuse (Claude Code / Grok / Cursor).
 
 `paper-abstract` examples quote public arXiv abstracts for pedagogy; structure notes draw on MIT EECS CommLab and Koopman (CMU) abstract guidance.
+
+`paper` skill owns subagent repo survey (`PAPER_REPO_SURVEY.md`); `paper-abstract` is a section child under `skills/paper/abstract/`.
