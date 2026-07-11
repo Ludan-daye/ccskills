@@ -37,7 +37,7 @@
 - Part 2（competing/prior-result）：**已有成果的能力 + 优缺点**，并给出 **same/different-axis 定位**（我们与谁相同、与谁不同）。
 
 ### 2.2 examples（build 时烘焙，本次实现的一步）
-现在去顶会顶刊找 **N 篇（目标 6–8）真实 related-work 段落**，分析其结构（尤其两段式/簇式：谱系段 + 对比段）、过渡句式、same/different 表达、引用密度，产出 `sections/related-work-examples.md`（**结构-teaching，绝不抄句**；像 `abstract/references/examples.md`）。`sections/related-work.md` 链接它。
+现在去顶会顶刊找 **N 篇（目标 6–8）真实 related-work 段落**，分析其结构（尤其两段式/簇式：谱系段 + 对比段）、过渡句式、same/different 表达、引用密度，产出 `sections/related-work-examples.md`（**结构-teaching，绝不抄句**；像 `abstract/references/examples.md`）。**并从中提炼一组「风格约束词/句式」**（same/different-axis 连接与定位，如 *Unlike / In contrast to / Building on / Whereas / differ in that / Similar to / Compared to*），单列一节写入 examples 文档。`sections/related-work.md` 链接它，**写作时须照这组约束词的风格**组织对比与过渡。
 
 ### 2.3 数据流
 ```
@@ -55,8 +55,8 @@ paper-section 写 related-work 节：
 
 | # | 文件 | 动作 | 说明 |
 |---|------|------|------|
-| 1 | `skills/paper/references/sections/related-work.md` | 改 | 加两部分结构、消费 `REFS_SHORTLIST`、真 `\cite`+`refs.bib`、链 examples、bib key 规则 |
-| 2 | `skills/paper/references/sections/related-work-examples.md` | 新增 | build 时研究烘焙的顶会顶刊 related-work 结构范例（不抄句） |
+| 1 | `skills/paper/references/sections/related-work.md` | 改 | 加两部分结构、消费 `REFS_SHORTLIST`、真 `\cite`+`refs.bib`、链 examples、bib key 规则、**风格约束词**、**可选对比表(问用户)** |
+| 2 | `skills/paper/references/sections/related-work-examples.md` | 新增 | build 时研究烘焙的顶会顶刊 related-work 结构范例 + **风格约束词/句式**一节（不抄句） |
 | 3 | `skills/paper/section/SKILL.md` | 改 | related-work 节**特例**：读 `REFS_SHORTLIST`、按两部分、发真 `\cite` + 追加 `refs.bib`（其余节仍 `\cite{TODO:}`） |
 | 4 | `skills/paper/references/storage-framework.md` | 改 | 加 `refs.bib` 契约（owner=related-work 写作；风格随模板）+ bib key 命名规则 |
 
@@ -78,8 +78,14 @@ paper-section 写 related-work 节：
 - Part 2 的优缺点/对比**只依据 ref 的已核实内容**，不夸大；**不堆我们自己的结果数字**（那属 Experiments）。
 
 ### 4.4 门禁 + 自检
-- 写 prose 前给 `CONTENT_LOCK`：两部分各含哪些 ref id + 每部分大纲。用户确认后才写。
-- 自检：每个 `\cite{key}` ∈ USER_SELECTION 且 refs.bib 有条目；无越界结果数字；bibstyle 与模板一致；`% Status`/`STATE` 刷新。
+- 写 prose 前给 `CONTENT_LOCK`：两部分各含哪些 ref id + 每部分大纲，**并询问是否生成对比表（§4.5）**。用户确认（含表 yes/no）后才写。
+- 自检：每个 `\cite{key}` ∈ USER_SELECTION 且 refs.bib 有条目；无越界结果数字（对比表例外，见 §4.5，我方数值须 `% src:`）；bibstyle 与模板一致；风格照约束词；`% Status`/`STATE` 刷新。
+
+### 4.5 可选对比表（**必须先询问用户**）
+默认不强加。写作前询问「是否要一张 prior-work 对比表」：
+- 若要：一个 LaTeX `table`，**第一列 = 被引工作名称 + `\cite{key}` +（一句注释）**；其余列为对比维度（方法类型 / bit-width / 数据集 / 关键指标 等）；**我们的方法作为其中一行**。
+- 数字纪律：被引工作数值**只取自该 ref 已核实内容**，取不到 → 留空或 `% NUM-NEEDED`，**不编**；**我方数值 `% src: <claim_id>` 追 survey**（对比表是 related-work 里唯一允许出现我方数值处，且必须溯源）。
+- 标 `\label{tab:related-comparison}` + `% TAB`；用户答「不要」→ 跳过，正文纯 prose。
 
 ## 5. 测试计划（writing-skills 铁律）
 - **RED（无增强）**：给一个含 `REFS_SHORTLIST`(USER_SELECTION 角度标记) + related-work 骨架的 fixture，让 agent 写 related-work → 预期：无两部分结构、不严格只引选定 refs、**编造 `\cite`/bib 或不落 bib**、bib 风格不随模板、可能无门禁。
@@ -107,6 +113,8 @@ docs/superpowers/specs/2026-07-10-paper-relwork-write-design.md  # 本 spec
 5. `related-work-examples.md` 由真实顶会顶刊 related-work 段落分析烘焙（不抄句）。
 6. RED→GREEN 表明增强改变行为（两部分 / 只引选定 / 真 cite+bib 随模板 / 门禁）。
 7. related-work.md / paper-section / storage-framework / fixture 一致。
+8. 写法照 examples 提炼的**风格约束词/句式**组织对比与过渡。
+9. **对比表先问用户**；要则第一列 = 工作名 + `\cite` + 注释、含我方一行、数值溯源（我方 `% src:`）/被引不编；不要则跳过。
 
 ## 8. 范围之外（YAGNI）
 - **其余节的真 `\cite`**（method/experiments 等仍 `\cite{TODO:}`）——本次只做 related-work 落真引用。
