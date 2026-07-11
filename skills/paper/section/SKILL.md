@@ -53,6 +53,15 @@ No prose before CONFIRMED.
 - If GUIDANCE page limit known and the draft looks over budget, warn (do not hard-truncate).
 - Report: section, claim_ids used, files touched, any `needs-user`/`NUM-NEEDED`/`CITE-NEEDED` left open.
 
+## Related-work special case
+When the picked section is **related-work**, additionally (see `../references/sections/related-work.md`):
+- Read `paper/REFS_SHORTLIST.md` `USER_SELECTION` (missing/not `CONFIRMED` → run `paper-refs` first). Structure = one part per collected angle (lineage/competing, …).
+- Emit **real `\cite{key}`** (not `\cite{TODO:}`) for selected refs; append a matching BibTeX entry to `paper/refs.bib` (bib key rule + venue bibstyle — see `../references/storage-framework.md`).
+- At the CONTENT_LOCK step, **ask the user whether to include the optional comparison table**.
+- Only `USER_SELECTION` refs; every `\cite{key}` must have a `refs.bib` entry.
+
+Other sections keep `\cite{TODO:...}` + `% CITE-NEEDED` (no bib).
+
 ## Hard rules
 1. One section per run; edit only that section's `.tex`.
 2. **No invented numbers, terms, citations, figures.** Missing → mark + ask.
