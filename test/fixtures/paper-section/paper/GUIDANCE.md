@@ -3,3 +3,8 @@
 | 类型 | 具体 | 模板策略 | 页限 |
 |------|------|----------|------|
 | conference | IEEE-default | IEEE-default | 8 |
+
+## 6. Template & bib
+| 项 | 内容 |
+|----|------|
+| bibliographystyle | IEEEtran |
