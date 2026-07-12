@@ -62,6 +62,13 @@ When the picked section is **related-work**, additionally (see `../references/se
 
 Other sections keep `\cite{TODO:...}` + `% CITE-NEEDED` (no bib).
 
+## Method special case
+When the picked section is **method** (see `../references/sections/method.md`):
+- First dispatch a read-only **method-dig** subagent (`../references/method-dig-prompt.md`) → `paper/METHOD_NOTES.md` (ideas not code; inferred items = `needs-confirm`).
+- Structure = small overview + **one `\subsection` per innovation point**. Present the innovation-point list (name | principle | source_path | core/minor | needs-confirm) → user edits → **INNOVATION_LOCK** (hard gate; needs-confirm items must be individually confirmed).
+- Then scaffold the frame on disk (overview + per-innovation skeletons), show it (soft check), and write **one subsection per run** by default; `% Status(sub:<slug>)` per subsection.
+- **Zero experimental content**; no code-level narration; every formula gets substantial prose and passes multi-agent formula verification (`% FORMULA-CHECK` for issues); formulas trace to METHOD_NOTES/user-confirmed input only.
+
 ## Hard rules
 1. One section per run; edit only that section's `.tex`.
 2. **No invented numbers, terms, citations, figures.** Missing → mark + ask.
