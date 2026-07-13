@@ -69,6 +69,9 @@ When the picked section is **method** (see `../references/sections/method.md`):
 - Then scaffold the frame on disk (overview + per-innovation skeletons), show it (soft check), and write **one subsection per run** by default; `% Status(sub:<slug>)` per subsection.
 - **Zero experimental content**; no code-level narration; every formula gets substantial prose and passes multi-agent formula verification (`% FORMULA-CHECK` for issues); formulas trace to METHOD_NOTES/user-confirmed input only.
 
+## Any table (all sections)
+When emitting ANY LaTeX table, follow `../references/table-style.md`: booktabs (no vertical lines), horizontal headers, notes in caption; caption position per venue; `±std` when multi-seed. **Enrichment is per-table:** judge which of color/font-color/arrows/small-delta/tiers fit THIS table, propose them to the user (`TABLE_ENRICH_LOCK`), apply only what's confirmed — never color-only, always caption-legended, deltas computed from traceable numbers, required LaTeX packages declared or `% PKG-NEEDED`.
+
 ## Hard rules
 1. One section per run; edit only that section's `.tex`.
 2. **No invented numbers, terms, citations, figures.** Missing → mark + ask.

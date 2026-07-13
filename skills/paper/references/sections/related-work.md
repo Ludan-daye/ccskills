@@ -70,6 +70,7 @@ Default off. At the lock step, ask "要不要 prior-work 对比表?". If yes:
 - Cited works' numbers only from that ref's verified content; unavailable → blank or `% NUM-NEEDED` (never invented). **Our own numbers carry `% src: <claim_id>`**.
 - `\label{tab:related-comparison}` + `% TAB`. If the user says no → skip; prose only.
 - 注：顶会通常把定量对比表放在 Experiments（本查 6/6 的 RW 旁无表）——此表是本 skill 的**可选**项，仅在用户要时出；我方数字出现处 = 此表 **或** Claim→evidence 里那一个"最近竞争者"定位句。
+- 排版遵循 `../table-style.md`（booktabs 横排无竖线；富化走每表门禁 `TABLE_ENRICH_LOCK`；非 color-only、caption 给图例）。
 
 ## Done-when checklist
 - [ ] 读者读完知道"我们和谁比、为何不同"
