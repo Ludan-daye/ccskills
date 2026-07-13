@@ -12,6 +12,7 @@
 2. Overview（**只占一小部分**：方法框架、模块如何串起、总览图占位 `\ref{fig:TODO-overview}` + 丰富 `% FIG-NEEDED:` 描述图应含的模块/数据流；常规/工程部分在此一句带过，**不单独成节**）
 3. **每个 `\subsection` = 一个创新点**（来自 INNOVATION_LOCK 清单，顺序照清单）：动机(为什么需要) → 原理 → 公式(每条配足量文字) → 设计理由
 写作流程见 `## Innovation-point flow`；风格参照 `method-examples.md` 归纳（灵活不死板）。
+- overview 架构图 → 产一份 **figure-brief**（走 `../figure-style.md`：按贡献选骨架、box 名=小节名、内容溯源 `% src:`/`NUM-NEEDED`、两段门禁），而非仅一句 `% FIG-NEEDED`。
 
 ## Innovation-point flow (INNOVATION_LOCK)
 ```text

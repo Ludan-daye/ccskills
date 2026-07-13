@@ -72,6 +72,9 @@ When the picked section is **method** (see `../references/sections/method.md`):
 ## Any table (all sections)
 When emitting ANY LaTeX table, follow `../references/table-style.md`: booktabs (no vertical lines), horizontal headers, notes in caption; caption position per venue; `±std` when multi-seed. **Enrichment is per-table:** judge which of color/font-color/arrows/small-delta/tiers fit THIS table, propose them to the user (`TABLE_ENRICH_LOCK`), apply only what's confirmed — never color-only, always caption-legended, deltas computed from traceable numbers, required LaTeX packages declared or `% PKG-NEEDED`.
 
+## Any figure (architecture/overview)
+When a section needs an architecture/overview figure, follow `../references/figure-style.md`: choose the skeleton by contribution type; box names = Method subsection headings; components/dims/latency from `paper/METHOD_NOTES.md`, result numbers from survey `claim_id` — every number `% src:` or `NUM-NEEDED`, **never invented**. Run the **two-part gate** (propose layout, then content → user confirms → `FIGURE_LOCK`), then emit a structured figure-brief to `paper/FIGURE_BRIEF_<name>.json` (schema `../references/figure-brief-template.json`). Colorblind-safe, non-color-only; `main_title`/caption states the claim. This produces a brief for a downstream generator — not a rendered image.
+
 ## Hard rules
 1. One section per run; edit only that section's `.tex`.
 2. **No invented numbers, terms, citations, figures.** Missing → mark + ask.
