@@ -1,0 +1,25 @@
+{
+  "_note": "FORMAT / field-schema ONLY. Layout & content are filled per paper from the research examples (skeleton, panels) + METHOD_NOTES/survey (components, dims, numbers). The style args carry research-convention defaults (overridable). Do NOT copy any example paper's specific stages, numbers, or color-role semantics.",
+  "type": "<figure type, e.g. Method-overview figure (a paper's Figure 1)>",
+  "instruction": "{argument name=\"instruction\" default=\"Design ONE clean, publication-quality framework figure explaining the method. Modular data-flow backbone (labeled component blocks joined by directed arrows), plus the panels chosen at the layout gate. Schematic and rigorous, not decorative: every block, arrow, and glyph carries information; annotate tensor dimensions and latency only where they are sourced. Favor clarity, alignment, and generous whitespace over ornamentation.\"}",
+  "style": {
+    "render": "{argument name=\"render style\" default=\"clean modern scientific schematic; flat vector with light isometric depth and soft ambient shadows; crisp thin strokes; generous whitespace\"}",
+    "palette": "{argument name=\"palette\" default=\"muted, colorblind-safe (Okabe-Ito); assign colors to THIS paper's own semantic roles (do NOT reuse another paper's mapping); every color paired with an icon or label (never color-only); neutral grays for ordinary modules\"}",
+    "typography": "{argument name=\"typography\" default=\"clean geometric sans-serif; monospace for tensors/dimensions; small-caps section headers\"}",
+    "modules": "{argument name=\"module style\" default=\"rounded rectangular blocks with subtle depth and hairline borders; a snowflake/padlock icon marks frozen (non-trainable) components\"}"
+  },
+  "layout": {
+    "main_title": "<argumentative title stating THIS paper's claim (not 'diagram of X')>",
+    "centerpiece": {
+      "position": "<primary data-flow position/direction set by the chosen skeleton>",
+      "description": "<end-to-end pipeline; annotate dims/latency ONLY where traceable to METHOD_NOTES/survey (% src:), else NUM-NEEDED>",
+      "count": "<number of stages>",
+      "stages": ["<NN stage-name — component (dims) [% src: <id> | NUM-NEEDED]>"]
+    },
+    "sections": [
+      {"position": "<e.g. left panel>", "title": "<insight: why it works>", "description": "<mechanism/geometry, block-level>", "count": "<n>", "labels": ["<label>"]},
+      {"position": "<e.g. top-right>", "title": "<comparison: gained vs lost>", "items": ["<+ what the design gains>", "<- what the alternative loses>"]},
+      {"position": "<e.g. bottom band>", "title": "<evaluation & headline results>", "count": "<n>", "blocks": ["<result block; every number % src: <claim_id> or NUM-NEEDED>"]}
+    ]
+  }
+}
