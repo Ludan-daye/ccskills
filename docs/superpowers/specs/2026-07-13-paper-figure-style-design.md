@@ -23,10 +23,18 @@
 
 ## 2. 输出 = 结构化 figure-brief（用户给定模版为 schema）
 
-产物 `<ROOT>/paper/FIGURE_BRIEF_<name>.json`（LaTeX 里 `% FIG-NEEDED` 链接它）。三层：
+**学习边界（重要）**：从用户给的 JSON 学的**只是格式/字段 schema**，**不是它的具体内容**——例子里的 stages、维度数字、`red=harmful/blue=benign` 语义、那 4 个面板，都是**某安全论文的示范填充**，非规定。
+
+| 从哪学 | 学什么 |
+|--------|--------|
+| 用户给的 **JSON** | 只学**格式 / 字段 schema**（`type/instruction/style/layout` 的结构与嵌套）|
+| 研究 **examples**（6 篇顶会图）+ 贡献类型 | **排版**：骨架选型、面板组合、创新点放哪、配色/图标惯例 |
+| **`METHOD_NOTES`/survey/Method 小节**（skill 家族） | **内容**：部件、维度、latency、结果数字、box 名 |
+
+产物 `<ROOT>/paper/FIGURE_BRIEF_<name>.json`（LaTeX 里 `% FIG-NEEDED` 链接它）。三层字段结构（= 从 JSON 学的 schema）：
 
 - **`type` / `instruction`**：图类型 + 设计原则（schematic、每 block/箭头/字形都带信息、标 tensor 维度 + latency、顶会清晰度、留白胜堆砌）。
-- **`style{render,palette,typography,modules}`**：每项 `{argument name=... default=...}` 可覆盖；**默认值 = 研究惯例**——clean flat 矢量 schematic；**Okabe-Ito 色盲安全语义色**（red=harmful / blue=benign / green=ALLOW / vermilion=BLOCK / gray=模块）；geometric sans + monospace 张量 + small-caps 头；rounded block + **雪花/锁=frozen**。
+- **`style{render,palette,typography,modules}`**：每项 `{argument name=... default=...}` 可覆盖；**默认值 = 研究惯例**——clean flat 矢量 schematic；**Okabe-Ito 色盲安全调色板**，颜色**按本论文自身的语义角色分配**（JSON 例子的 `red=harmful/blue=benign/green=ALLOW/vermilion=BLOCK` 是那篇安全论文的语义，**非通用**——换论文按其自身角色重映射）；geometric sans + monospace 张量 + small-caps 头；rounded block + **雪花/锁=frozen**。
 - **`layout{main_title, centerpiece{position,description,count,stages[]}, sections[]{position,title,description,count,items/blocks/labels}}`**：`main_title` 是论点式标题；`centerpiece` 是主数据流（stages 逐段标维度+latency）；`sections` 是支撑面板（insight「为什么成立」几何/机制 · comparison「gained/lost」设计选择 · results band 真实结果数字）。
 
 ## 3. 核心机制
