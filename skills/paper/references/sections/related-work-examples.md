@@ -76,3 +76,17 @@
 ---
 
 **Sources analyzed (fetched + paraphrased, not copied):** GPTQ (ICLR'23), PagedAttention/vLLM (SOSP'23), H2O (NeurIPS'23), StreamingLLM (ICLR'24), FlashAttention (NeurIPS'22), SmoothQuant (ICML'23), KIVI (ICML'24).
+
+---
+
+## Numbers in Related Work — 数字用法（专项检查，6 篇 2023–2024）
+
+补查：vLLM (SOSP'23) · Sarathi-Serve (OSDI'24) · RepViT (CVPR'24) · MInference (NeurIPS'24) · Self-RAG (ICLR'24) · DoRA (ACL'24)。焦点：RW 里出不出结果数字，尤其**自己的**数字会不会进 RW 正文。
+
+- **RW 大体无数字**：6 篇里 **5 篇 RW 全程零数字**——纯机制/分类描述。
+- **他人数字**：仅 1/6（Sarathi-Serve）在 RW 正文引了前作一个约数（order-of-magnitude），且没成表；不是系统性堆分数。
+- **我方数字进 RW 正文**：仅 1/6（**vLLM**）。且形式很特定——在一段**针对单个点名竞争者（Orca）**的定位里，放**恰好一个**我方倍数（"比 X 快约 2–4×"），一句、系于一个 named rival；**不是结果复述、不成表、不常规**。
+- **对比表**：**6/6 都没在 RW 旁放定量对比表**——表统一在 Evaluation/Experiments。
+
+**NUMBERS VERDICT:** 多数**不放**。RW 以定位为主：他人数字偶尔且稀疏（从不成表）；**我方数字罕见**（≈1/6），出现时是"最近竞争者"aside 里的**单个可追数字**，绝非结果回顾、绝不成表、绝不常规化。→ RW 与 Intro 不同（Intro 6/8 放 headline，RW 5/6 不放）。
+
